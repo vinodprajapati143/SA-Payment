@@ -1,0 +1,49 @@
+<div class="admin-dashboard">
+  <div class="lg:flex">
+    <app-admin-sidebar />
+    <div class="content">
+      <div class="head">
+        <h4>All User</h4>
+      </div>
+      <div class="p-6 bg-white shadow-md rounded-lg">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-xl font-semibold">Balance Return</h2>
+          <input type="text" placeholder="Search"
+            class="border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 text-sm">
+            <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+              <tr>
+                <th class="px-4 py-2 text-left">User ID</th>
+                <th class="px-4 py-2 text-left">Name</th>
+                <th class="px-4 py-2 text-left">Mobile</th>
+                <th class="px-4 py-2 text-left">Member Type</th>
+                <th class="px-4 py-2 text-left">Normal Balance</th>
+                <th class="px-4 py-2 text-left">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr *ngFor="let user of users">
+                <td class="px-4 py-2">{{ user.id }}</td>
+                <td class="px-4 py-2">{{ user.name }}</td>
+                <td class="px-4 py-2">{{ user.mobile }}</td>
+                <td class="px-4 py-2">{{ user.memberType }}</td>
+                <td class="px-4 py-2">{{ user.normalBalance }}</td>
+                <td class="px-4 py-2">
+                  <button (click)="viewUser()" class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,43 @@
+:root {
+  /* Brand Colors */
+  --primary-blue: #219EBC;
+  --primary-orange: #FB8500;
+  --dark-teal: #0A7E8D;
+  --dark-teal-dark: #066874;
+  --logo-teal: #008B8B;
+  --secondary-blue: #4A628A;
+  --profile-blue: #3a5f9d;
+  --profile-teal: #1fa2a8;
+  --commission-green: #00D457;
+  --border-teal: #20A2A0;
+  
+  /* Status Colors */
+  --color-danger: #EB2222;
+  --color-danger-dark: #851313;
+  --color-success: #1AD07C;
+  --color-success-dark: #0d6a3f;
+  
+  /* Functional Colors */
+  --primary: var(--primary-blue);
+  --secondary: var(--primary-orange);
+  --accent: var(--dark-teal);
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --gray-light: #EDF0F5;
+  --gray-medium: #8C8C8C;
+  --gray-dark: #333333;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-orange) 100%);
+  --gradient-secondary: linear-gradient(180deg, var(--secondary-blue) 0%, var(--dark-teal) 100%);
+  --gradient-accent: linear-gradient(180deg, var(--dark-teal) 0%, var(--dark-teal-dark) 100%);
+  --gradient-profile: linear-gradient(180deg, var(--profile-blue) 0%, var(--profile-teal) 100%);
+  --gradient-danger: linear-gradient(180deg, var(--color-danger) 0%, var(--color-danger-dark) 100%);
+  --gradient-success: linear-gradient(180deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+  
+  /* Transparency */
+  --primary-transparent: rgba(33, 158, 188, 0.1);
+  --secondary-transparent: rgba(251, 133, 0, 0.1);
+}

@@ -1,0 +1,79 @@
+<div class="sidebar w-[280px] h-full lg:block hidden">
+    <div class="logo bg-[var(--primary-orange)] flex justify-center items-center h-[90px]">
+        <img src="/assets/images/dashboard/images/logo.png" alt="">
+    </div>
+
+    <div class="admin-navigation flex">
+        <!-- Left Main Menu -->
+        <div class="left px-4">
+            <ul>
+                <li *ngFor="let link of links">
+                    <a [routerLink]="link.href" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+                        <img [src]="getImageUrl(link.img, false)" alt="" class="">
+                        {{ link.text }}
+                    </a>
+                </li>
+
+                <li>
+                    <a (click)="logout()">
+                        <img [src]="getImageUrl('logout', false)" alt="">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Right Submenu -->
+        <div class="right flex-1" style="background: linear-gradient(180deg, var(--primary-orange) 0%, var(--primary-blue) 100%);">
+            <ul>
+                <li *ngFor="let sub of currentSubLinks">
+                    <a [routerLink]="sub.href" routerLinkActive="active" class="text-xs"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                        <img [src]="getImageUrl(sub.img, false)" alt="">
+                        {{ sub.text }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-sidebar md:hidden flex" [ngClass]="mobileSidebarOpen?'active':''">
+    <div class="w-full h-[100vh] bg-white ">
+        <div class="logo">
+            <span>
+                AKBoss
+            </span>
+        </div>
+        <nav>
+            <ul>
+                <li *ngFor="let link of this.mobileNavLinks" class="bg-[#F6F6F6]">
+                    <div (click)="handleNavItemClick(link)"
+                        class="px-4 py-2 border-y border-[var(--border-teal)66] flex justify-between w-full font-semibold text-[var(--black)B2]">
+                        {{link.title}}
+                        <img *ngIf="link.subLinks" class="rotate-[90deg]" src="/assets/images/icons/arrow-left.svg"
+                            alt="">
+                    </div>
+                    <div *ngIf="link.isOpen">
+                        <ul>
+                            <li *ngFor="let subLink of link.subLinks"
+                                [ngStyle]="{'background-color': link.isActive?'var(--border-teal)': 'var(--white)'}"
+                                class="px-4 py-1 border-y border-[var(--border-teal)66]">
+                                <div (click)="handleNavSubLinkItemClick(link,subLink)">
+                                    {{subLink.title}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div (click)="this.mobileSidebarOpen=!this.mobileSidebarOpen" class="toggle-button">
+        <div class="w-[4px] rounded-lg bg-white">
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,167 @@
+<div class="admin-dashboard">
+    <div class="flex">
+        <app-admin-sidebar />
+        <div class="content">
+            <div class="head">
+                <h4>All User</h4>
+            </div>
+            <div class="grid grid-cols-4 px-4 py-4 gap-x-4">
+                <div *ngFor="let data of cardsData" class="card" [style.background]="data.bgColor">
+                    <div class="card-header" [style.backgroundColor]="data.color">
+                        <h5 class="card-title">{{data.title}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="left">
+                            {{data.value}}
+                        </div>
+                        <div class="right">
+                            <div class="badge" [style.background]="data.color">
+                                <img src="/assets/images/dashboard/icons/triangle.svg" alt="">
+                                {{data.percentage}}
+                            </div>
+                            <div class="compare">
+                                {{data.compareText}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="flex px-4 py-4 justify-between border-t-2 bg-[var(--dark-teal)]">
+                <div class="flex gap-x-4 items-center">
+                    <h5 class="font-bold text-white">Show</h5>
+                    <div class="border-2 border-[var(--primary-blue)] rounded-sm px-2 py-2 bg-white">
+                        <select name="page" class="px-2 bg-transparent outline-none"
+                            (change)="onItemsPerPageChange($event)">
+                            <option value="10" [selected]="itemsPerPage === 10" class="text-black">10</option>
+                            <option value="20" [selected]="itemsPerPage === 20" class="text-black">20</option>
+                            <option value="50" [selected]="itemsPerPage === 50" class="text-black">50</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <input type="text" [(ngModel)]="searchTerm" (input)="onSearchChange()"
+                            class="border-2 border-[var(--primary-blue)] rounded-sm px-4 py-2 w-64 outline-none focus:ring-1 focus:ring-[var(--primary-blue)]"
+                            placeholder="Search by name & phone ">
+                        <img src="/assets/images/dashboard/icons/search-theme.svg"
+                            class="absolute right-2 top-[50%] translate-y-[-50%] w-4 pointer-events-none" alt="">
+                    </div>
+                </div>
+                <div class="flex gap-x-2">
+                    <button (click)="exportToExcel()"
+                        class="rounded-sm flex justify-between items-center text-[14px] border-2 border-[var(--primary-blue)] px-4 py-1 font-[500] gap-x-2 bg-[#FFFFFFE5] hover:bg-green-50 transition-colors">
+                        <img src="/assets/images/dashboard/icons/download.svg" alt="">
+                        <div>
+                            Download
+                        </div>
+                    </button>
+                    <!-- <button
+                        class="rounded-sm flex justify-between items-center text-[14px] border-2 border-[var(--primary-blue)] px-4 py-1 font-[500] gap-x-2 bg-[#FFFFFFE5]">
+                        <img src="/assets/images/dashboard/icons/create.svg" alt="">
+                        <div>
+                            Create
+                        </div>
+                    </button> -->
+                    <button (click)="deleteSelectedUsers()" [disabled]="selectedIds.size === 0"
+                        [ngClass]="{'opacity-50 grayscale cursor-not-allowed': selectedIds.size === 0, 'hover:bg-red-50 hover:border-red-500': selectedIds.size > 0}"
+                        class="rounded-sm flex justify-between items-center text-[14px] border-2 border-[var(--primary-blue)] px-4 py-1 font-[500] gap-x-2 bg-[#FFFFFFE5] transition-all">
+                        <img src="/assets/images/dashboard/icons/delete.svg" alt="">
+                        <div>
+                            Delete {{ selectedIds.size > 0 ? '(' + selectedIds.size + ')' : '' }}
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="user-table-container">
+                <table class="user-table">
+                    <thead>
+                        <tr>
+                            <th><input class="checkbox" type="checkbox" [checked]="isAllSelected()"
+                                    (change)="toggleSelectAll($event)" /></th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Joining Date</th>
+                            <th>Mobile Number</th>
+                            <!-- <th>Main Balance</th> -->
+                            <!-- <th>Bonus Balance</th> -->
+                            <th>Parent</th>
+                            <th>User Type</th>
+                            <th>User Dashboard</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of paginatedUsers" [ngClass]="{'bg-blue-50/50': selectedIds.has(user.id)}">
+                            <td><input class="checkbox" type="checkbox" [checked]="selectedIds.has(user.id)"
+                                    (change)="toggleSelection(user.id)" /></td>
+                            <td>{{ user.username }}</td>
+                            <td>
+                                <span class="status" [ngClass]="{ 'disabled': !user.enabled, 'enabled': user.enabled }">
+                                    {{ user.enabled?'Enabled':'Disabled' }}
+                                </span>
+                            </td>
+                            <td>{{ user.joiningdate | date: 'dd-MM-yyyy' }}</td>
+                            <td>{{ user.phone }}</td>
+                            <!-- <td>{{ user.amountPaid }}</td> -->
+                            <!-- <td>{{ user.totalAmount }}</td> -->
+                            <td>{{ user.invitecode || 'N/A' }}</td>
+                            <td>{{ (user.registerType | titlecase) || 'N/A' }}</td>
+
+                            <td><button class="dashboard-btn">Dashboard</button></td>
+                            <td>
+                                <button class="view-btn flex items-center">
+                                    View
+                                    <span class="arrow">
+                                        <img src="/assets/images/icons/arrow-left-white.svg"
+                                            class="rotate-[90deg] w-[15px]" alt="" />
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Repeat <tr> for remaining rows -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination flex justify-between px-4 py-2 bg-[var(--dark-teal)]">
+                <div class="text-white flex items-center">
+                    Showing {{ (currentPage - 1) * itemsPerPage + 1 }}-{{ Math.min(currentPage * itemsPerPage,
+                    users.length) }} of {{ users.length }} results
+                </div>
+                <div class="flex gap-x-3 items-center select-none">
+                    <div class="flex items-center gap-x-1 cursor-pointer text-white hover:text-gray-200 transition-colors"
+                        [ngClass]="{'opacity-50 pointer-events-none': currentPage === 1}"
+                        (click)="goToPage(currentPage - 1)">
+                        <img src="/assets/images/icons/arrow-left-white.svg" class="w-[12px] rotate-[-180deg]" alt="">
+                        <span class="text-sm font-medium">Previous</span>
+                    </div>
+
+                    <div class="flex gap-x-1 px-2">
+                        <span *ngFor="let page of getPages()" (click)="goToPage(page)"
+                            class="text-white h-7 w-7 flex items-center justify-center cursor-pointer rounded transition-all hover:bg-white/10"
+                            [ngClass]="{'bg-white !text-[var(--dark-teal)] font-bold shadow-sm': currentPage === page}">
+                            {{page}}
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-x-1 cursor-pointer text-white hover:text-gray-200 transition-colors"
+                        [ngClass]="{'opacity-50 pointer-events-none': currentPage === totalPages}"
+                        (click)="goToPage(currentPage + 1)">
+                        <span class="text-sm font-medium">Next</span>
+                        <img src="/assets/images/icons/arrow-left-white.svg" class="w-[12px]" alt="">
+                    </div>
+                </div>
+                <!-- <div class="flex gap-x-2 items-center">
+                    <span class="text-white">Items per page</span>
+                    <div class="border-2 border-white text-white rounded-sm px-2 py-2">
+                        <select name="page" class="px-2 bg-transparent outline-none"
+                            (change)="onItemsPerPageChange($event)">
+                            <option value="10" [selected]="itemsPerPage === 10" class="text-black">10</option>
+                            <option value="20" [selected]="itemsPerPage === 20" class="text-black">20</option>
+                            <option value="50" [selected]="itemsPerPage === 50" class="text-black">50</option>
+                        </select>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

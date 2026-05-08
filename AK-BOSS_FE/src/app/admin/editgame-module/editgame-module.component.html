@@ -1,0 +1,145 @@
+<div class="shadow-md md:p-5 py-4" style="background: linear-gradient(180deg, var(--primary-orange) 0%, var(--primary-blue) 100%);">
+  <div (click)="closePopup()" class="close-btn absolute right-2 top-2 p-2 rounded">
+    <img src="/assets/images/dashboard/icons/cross-black.svg" alt="">
+  </div>
+  <div class="flex items-center flex-col">
+    <div class="h-[4px] md:w-[200px] w-[100px] bg-white rounded-md"></div>
+    <h5 class="text-[22px] text-center text-white font-bold mt-4">
+      Edit what you want
+    </h5>
+  </div>
+  <div class="game md:flex hidden relative bg-[var(--border-teal)] type-2">
+    <div class="name-2">
+      <div class="relative">
+        <span>{{game.game_name }}</span>
+        <img class="md:hidden absolute top-[50%] right-2 w-[20px] -translate-y-[50%]"
+          src="/assets/images/dashboard/icons/edit-white.svg" alt="">
+      </div>
+    </div>
+
+    <div class="flex w-full">
+      <div class="right md:gap-x-3">
+        <div class="flex flex-col">
+          <!-- <div class="time md:order-1 order-1">
+            <div>
+              01
+            </div>
+            :
+            <div>
+              55
+            </div>
+            :
+            <div>
+              20
+            </div>
+          </div> -->
+          <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Open</h5>
+        </div>
+        <div class="game-detail">
+          <input type="text" id="patte1" [(ngModel)]="game.patte1" class="box w-[100px] ">
+
+          <span></span>
+          <div class="flex gap-x-1">
+            <input type="text" id="patte1_open" [(ngModel)]="game.patte1_open" class="box w-[50px]">
+            <input type="text" id="patte2_close"    [(ngModel)]="game.patte2_close" class="box w-[50px]">
+
+          </div>
+          <span></span>
+          <input type="text" id="patte2" [(ngModel)]="game.patte2" class="box w-[100px]">
+
+
+        </div>
+
+        <div class="flex flex-col">
+          <!-- <div class="time md:order-1 order-2">
+            <div>
+              01
+            </div>
+            :
+            <div>
+              55
+            </div>
+            :
+            <div>
+              20
+            </div>
+          </div> -->
+          <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Closed</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- mobile -->
+  <div class="game md:hidden flex relative bg-[var(--border-teal)] type-2">
+    <div class="name-2">
+      <div class="relative">
+        <span>Rara</span>
+      </div>
+    </div>
+
+    <div class="flex w-full">
+
+      <div class="right md:gap-x-3 flex justify-center w-full">
+        <div class="flex gap-x-1 justify-center w-full">
+          <div class="flex flex-col">
+            <div class="time md:order-1 order-2">
+              <div>
+                01
+              </div>
+              :
+              <div>
+                55
+              </div>
+              :
+              <div>
+                20
+              </div>
+            </div>
+            <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Closed
+            </h5>
+          </div>
+          <div class="flex flex-col">
+            <div class="time md:order-1 order-2">
+              <div>
+                01
+              </div>
+              :
+              <div>
+                55
+              </div>
+              :
+              <div>
+                20
+              </div>
+            </div>
+            <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Open
+            </h5>
+          </div>
+        </div>
+
+        <div class="game-detail  justify-center w-full flex">
+          <input type="text" id="patte1" class="box w-[100px] ">
+
+          <span></span>
+          <div class="flex gap-x-2">
+            <input type="text" id="patte1_open" class="box w-[50px]">
+            <input type="text" id="patte2_close" class="box w-[50px]">
+
+          </div>
+          <span></span>
+          <input type="text" id="patte2" class="box w-[100px]">
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="flex justify-center">
+    <button class="bg-white text-[var(--dark-teal)] md:w-[300px] w-[70%] rounded-full py-2 font-bold">Save</button>
+  </div>
+</div>
+
+

@@ -1,0 +1,76 @@
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* above everything */
+}
+
+.blur-bg {
+  opacity: 0.3;
+  pointer-events: none; /* prevents clicking behind loader */
+}
+
+.loader {
+  transform: rotateZ(45deg);
+  perspective: 1000px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  color: var(--dark-teal);
+  position: relative;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  animation: spin 1s linear infinite;
+}
+
+.loader:after {
+  color: var(--secondary-blue);
+  transform: rotateY(70deg);
+  animation-delay: 0.4s;
+}
+
+@keyframes spin {
+  0%, 100% {
+    box-shadow: 0.2em 0 0 0 currentcolor;
+  }
+  12% {
+    box-shadow: 0.2em 0.2em 0 0 currentcolor;
+  }
+  25% {
+    box-shadow: 0 0.2em 0 0 currentcolor;
+  }
+  37% {
+    box-shadow: -0.2em 0.2em 0 0 currentcolor;
+  }
+  50% {
+    box-shadow: -0.2em 0 0 0 currentcolor;
+  }
+  62% {
+    box-shadow: -0.2em -0.2em 0 0 currentcolor;
+  }
+  75% {
+    box-shadow: 0 -0.2em 0 0 currentcolor;
+  }
+  87% {
+    box-shadow: 0.2em -0.2em 0 0 currentcolor;
+  }
+}
+
+
+

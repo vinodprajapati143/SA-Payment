@@ -1,0 +1,409 @@
+<div class="admin-dashboard">
+  <div class="lg:flex">
+    <app-admin-sidebar />
+    <div class="content">
+
+      <div class="head">
+        <h1 class="text-2xl leading-[48px] font-semibold text-gray-800 flex aling-center">General</h1>
+      </div>
+      <div class="p-1">
+
+        <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="bg-white rounded-lg shadow p-6 space-y-8">
+
+            <!-- Core Settings -->
+            <section class="flex justify-start w-full resposive-mob" formGroupName="site">
+              <h2 class="font-semibold text-lg mb-4 w-[15%] resposive-mob-one">Core Settings</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-[85%] resposive-mob-third">
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Site Name *</label>
+                  <input type="text" formControlName="name"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Copyright Text *</label>
+                  <input type="text" formControlName="copyright"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Phone Number</label>
+                  <input type="text" formControlName="phone"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Email Address *</label>
+                  <input type="email" formControlName="email"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="md:col-span-2 flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Address</label>
+                  <input type="text" formControlName="address"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="md:col-span-2 flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Google Map Iframe Code</label>
+                  <input type="text" formControlName="mapIframe"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Android File Name</label>
+                  <input type="text" formControlName="androidFile"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">Android File APK link</label>
+                  <input type="text" formControlName="androidLink"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">API Name</label>
+                  <input type="text" formControlName="apiName"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <label class="text-sm font-medium flex text-nowrap">API link</label>
+                  <input type="text" formControlName="apiLink"
+                    class="input border rounded w-full px-2 py-1 bg-white focus:outline-none focus:ring">
+                </div>
+
+              </div>
+            </section>
+
+
+            <section class="flex justify-start w-full resposive-mob" formGroupName="appearance">
+              <h2 class="font-semibold text-lg mb-4 w-[15%] resposive-mob-one">Site Appearance</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-[85%] resposive-mob-third">
+
+                <!-- Primary Color -->
+                <div>
+                  <label class="text-sm font-medium block mb-1">Primary Color</label>
+                  <div class="flex items-center border rounded-md px-3 py-2 gap-3">
+                    <input type="color" formControlName="primaryColor" (input)="syncColor('primaryColor')"
+                      class="w-8 h-8 border rounded cursor-pointer">
+
+                    <input type="text" formControlName="primaryColor" class="flex-1 text-sm outline-none">
+
+                    <button type="button" (click)="resetColor('primaryColor')"
+                      class="text-gray-400 hover:text-gray-600">
+                      🔄
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Primary Text Color -->
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Primary Text Color
+                  </label>
+                  <div class="flex items-center border rounded-md px-3 py-2 gap-3">
+                    <input type="color" formControlName="primaryTextColor" (input)="syncColor('primaryTextColor')"
+                      class="w-8 h-8 border rounded cursor-pointer">
+
+                    <input type="text" formControlName="primaryTextColor" class="flex-1 text-sm outline-none">
+
+                    <button type="button" (click)="resetColor('primaryTextColor')"
+                      class="text-gray-400 hover:text-gray-600">
+                      🔄
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Secondary Color -->
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Secondary Color
+                  </label>
+                  <div class="flex items-center border rounded-md px-3 py-2 gap-3">
+                    <input type="color" formControlName="secondaryColor" (input)="syncColor('secondaryColor')"
+                      class="w-8 h-8 border rounded cursor-pointer">
+
+                    <input type="text" formControlName="secondaryColor" class="flex-1 text-sm outline-none">
+
+                    <button type="button" (click)="resetColor('secondaryColor')"
+                      class="text-gray-400 hover:text-gray-600">
+                      🔄
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Tertiary Color -->
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Tertiary Color
+                  </label>
+                  <div class="flex items-center border rounded-md px-3 py-2 gap-3">
+                    <input type="color" formControlName="tertiaryColor" (input)="syncColor('tertiaryColor')"
+                      class="w-8 h-8 border rounded cursor-pointer">
+
+                    <input type="text" formControlName="tertiaryColor" class="flex-1 text-sm outline-none">
+
+                    <button type="button" (click)="resetColor('tertiaryColor')"
+                      class="text-gray-400 hover:text-gray-600">
+                      🔄
+                    </button>
+                  </div>
+                </div>
+
+                <!-- FILE UPLOADS -->
+
+
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Site Logo <span class="text-red-500">(438×117)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="file" (change)="upload($event, 'siteLogo')"
+                      class="w-full border rounded bg-white focus:outline-none focus:ring pr-10">
+                    <button type="button" (click)="showPreview(form.get('appearance.siteLogo')?.value)"
+                      class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-1">
+                    Accepted Site Logo Type: png, jpg, jpeg
+                  </p>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Square Logo <span class="text-red-500">(160×160)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="file" (change)="upload($event, 'squareLogo')"
+                      class="w-full border rounded bg-white focus:outline-none focus:ring pr-10">
+                    <button type="button" (click)="showPreview(form.get('appearance.squareLogo')?.value)"
+                      class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-1">
+                    Square Logo Type: png, jpg, jpeg
+                  </p>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Panel Logo <span class="text-red-500">(350*75)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="file" (change)="upload($event, 'panelLogo')"
+                      class="w-full border rounded bg-white focus:outline-none focus:ring pr-10">
+                    <button type="button" (click)="showPreview(form.get('appearance.panelLogo')?.value)"
+                      class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-1">
+                    Panel Logo Type: png, jpg, jpeg
+                  </p>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium flex text-nowrap text-gray-600 mb-1">
+                    Favicon <span class="text-red-500">(160*160)</span>
+                  </label>
+                  <div class="relative">
+                    <input type="file" (change)="upload($event, 'favicon')"
+                      class="w-full border rounded bg-white focus:outline-none focus:ring pr-10">
+                    <button type="button" (click)="showPreview(form.get('appearance.favicon')?.value)"
+                      class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500 transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                  <p class="text-xs text-gray-400 mt-1">
+                    Accepted Favicon Type: png, jpg, jpeg
+                  </p>
+                </div>
+
+              </div>
+            </section>
+
+
+            <section class="flex justify-start w-full resposive-mob" formGroupName="theme">
+              <h2 class="font-semibold text-lg mb-4 w-[15%] resposive-mob-one">Theme Settings</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-[85%] resposive-mob-third">
+
+                <!-- Website Direction -->
+                <div>
+                  <label class="text-sm font-medium flex text-nowrap">Website Direction</label>
+                  <select formControlName="direction"
+                    class="input border w-full rounded px-2 py-1 bg-white focus:outline-none focus:ring">
+
+                    <option value="ltr">Left To Right</option>
+                    <option value="rtl">Right To Left</option>
+
+                  </select>
+                </div>
+
+                <!-- Theme Mode -->
+                <div>
+                  <label class="text-sm font-medium flex text-nowrap">Default Theme Mode</label>
+                  <select formControlName="mode"
+                    class="input border w-full rounded px-2 py-1 bg-white focus:outline-none focus:ring">
+
+                    <option value="light">Light Mode</option>
+                    <option value="dark">Dark Mode</option>
+
+                  </select>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- Site Appearance -->
+
+            <section class="flex w-full resposive-mob" formGroupName="advanced">
+
+              <!-- Left Title -->
+              <h2 class="font-semibold text-lg w-[15%] resposive-mob-one">Advanced Settings</h2>
+
+              <!-- Right Content -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full lg:w-[85%] resposive-mob-third">
+
+                <!-- Time Zone -->
+                <div>
+                  <label class="text-sm font-medium mb-1 block">Time Zone</label>
+                  <select formControlName="timezone"
+                    class="w-full border rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-400">
+
+                    <option value="Asia/Kolkata">Asia/Kolkata</option>
+                  </select>
+                </div>
+
+                <!-- Country Code -->
+                <div>
+                  <label class="text-sm font-medium mb-1 block">Country Code</label>
+                  <select formControlName="countryCode"
+                    class="w-full border rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-400">
+
+                    <option value="+91">India +91</option>
+                  </select>
+                </div>
+
+                <!-- Paginate Number -->
+                <div>
+                  <label class="text-sm font-medium mb-1 block">
+                    Paginate Number <span class="text-red-500">*</span>
+                  </label>
+                  <input type="number" formControlName="pagination"
+                    class="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">
+                </div>
+
+                <!-- Debug Mode -->
+                <div>
+                  <label class="text-sm font-medium">Debug Mode</label>
+                  <div class="flex items-center justify-between border rounded-md px-4 py-1.5 bg-gray-100">
+                    <span class="text-sm font-medium">Turn On/Off Debug Mode</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" formControlName="debugMode" class="sr-only peer">
+
+                      <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-500
+          after:content-[''] after:absolute after:top-0.5 after:left-0.5
+          after:bg-white after:rounded-full after:h-5 after:w-5
+          after:transition-all peer-checked:after:translate-x-5">
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Landing Page -->
+                <div>
+                  <label class="text-sm font-medium">Landing Page</label>
+                  <div class="flex items-center justify-between border rounded-md px-4 py-1.5 bg-gray-100">
+                    <span class="text-sm font-medium">Turn On/Off Landing Page</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" formControlName="landingPage" class="sr-only peer">
+
+                      <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-500
+          after:content-[''] after:absolute after:top-0.5 after:left-0.5
+          after:bg-white after:rounded-full after:h-5 after:w-5
+          after:transition-all peer-checked:after:translate-x-5">
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Force SSL -->
+                <div>
+                  <label class="text-sm font-medium">Force SSL</label>
+                  <div class="flex items-center justify-between border rounded-md px-4 py-1.5 bg-gray-100">
+                    <span class="text-sm font-medium">Turn On/Off Force SSL</span>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" formControlName="forceSSL" class="sr-only peer">
+
+                      <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-500
+          after:content-[''] after:absolute after:top-0.5 after:left-0.5
+          after:bg-white after:rounded-full after:h-5 after:w-5
+          after:transition-all peer-checked:after:translate-x-5">
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <div class="flex justify-end gap-3">
+              <!-- <button class="px-4 py-2 border rounded text-gray-600">Reset</button> -->
+              <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded" [disabled]="isLoading"> {{
+                isLoading ? 'Saving...' : 'Save' }}</button>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Centered Preview Modal (at bottom of file) -->
+      <div *ngIf="isPreviewVisible"
+        class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        (click)="closePreview()">
+        <div class="relative max-w-4xl w-full bg-white rounded-lg p-2 shadow-2xl animate-fade-in"
+          (click)="$event.stopPropagation()">
+          <button (click)="closePreview()"
+            class="absolute -top-10 right-0 text-white hover:text-orange-500 transition-colors focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div class="overflow-hidden rounded-md flex items-center justify-center bg-gray-50 min-h-[300px]">
+            <img [src]="previewImageUrl" class="max-w-full max-h-[80vh] object-contain shadow-sm" alt="Preview">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

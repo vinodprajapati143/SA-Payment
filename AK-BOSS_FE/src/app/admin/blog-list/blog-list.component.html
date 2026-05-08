@@ -1,0 +1,159 @@
+<div class="admin-dashboard">
+    <div class="flex">
+        <app-admin-sidebar />
+        <div class="content">
+          
+          <div class="head">
+              <h1 class="text-2xl leading-[48px] font-semibold text-gray-800 flex aling-center">Blog List</h1>
+            </div>
+      <div class="p-6">
+
+    <!-- Header -->
+    <!-- <div class="mb-6">
+      <h1 class="text-xl font-semibold text-gray-800">Blog List</h1>
+      <p class="text-sm text-gray-400">Dashboard / Blog List</p>
+    </div> -->
+
+    <!-- Filters -->
+    <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+      <div class="flex flex-wrap gap-4 items-center">
+
+        <input
+          type="text"
+          placeholder="Filter By Title"
+          class="border rounded-md px-3 py-2 text-sm w-60 focus:outline-none focus:ring-1 focus:ring-orange-400"
+        />
+
+        <select
+          class="border rounded-md px-3 py-2 text-sm w-48 focus:outline-none focus:ring-1 focus:ring-orange-400"
+        >
+          <option>Select A Status</option>
+          <option>Active</option>
+          <option>Inactive</option>
+        </select>
+
+        <input
+          type="date"
+          class="border rounded-md px-3 py-2 text-sm w-48 focus:outline-none focus:ring-1 focus:ring-orange-400"
+        />
+
+        <button
+          class="flex items-center gap-1 border px-4 py-2 rounded-md text-sm text-gray-600 hover:bg-gray-100"
+        >
+          Filter
+        </button>
+
+        <button
+          class="bg-red-500 text-white px-4 py-2 rounded-md text-sm hover:bg-red-600"
+        >
+          Reset
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Blog Table -->
+    <div class="bg-white rounded-lg shadow-sm">
+      
+      <!-- Table Header -->
+      <div class="flex justify-between items-center p-4 border-b">
+        <h2 class="font-medium text-gray-700">Blogs</h2>
+
+        <button (click)="createNew()"
+          class="bg-orange-500 text-white px-4 py-2 rounded-md text-sm hover:bg-orange-600"
+        >
+          + Create New Blog
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-gray-50 text-gray-500">
+            <tr>
+              <th class="p-3 w-10">
+                <input type="checkbox" />
+              </th>
+              <th class="p-3">SL No.</th>
+              <th class="p-3">Blog Title</th>
+              <th class="p-3">Blog Created</th>
+
+              <th class="p-3 text-center">Status</th>
+              <th class="p-3 text-center">Option</th>
+            </tr>
+          </thead>
+
+         <tbody>
+  <tr *ngFor="let blog of blogs; let i = index" 
+      class="border-b hover:bg-gray-50">
+
+    <!-- Checkbox -->
+    <td class="p-3">
+      <input type="checkbox" />
+    </td>
+
+    <!-- Index -->
+    <td class="p-3">
+      {{ (pagination?.page - 1) * pagination?.limit + i + 1 }}
+    </td>
+
+    <!-- Title -->
+    <td class="p-3 text-gray-600">
+      {{ blog.title }}
+    </td>
+
+    <!-- Created Date -->
+    <td class="p-3 text-gray-600">
+      {{ blog.created_at | date:'medium' }}
+    </td>
+
+    <!-- Status Toggle -->
+    <td class="p-3 text-center">
+      <label class="inline-flex relative items-center cursor-pointer">
+        
+        <input type="checkbox"
+               class="sr-only peer"
+               [checked]="blog.status == 1"
+                [disabled]="blog.loading"
+               (change)="toggleStatus(blog)" />
+
+        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-500 
+          after:content-[''] after:absolute after:top-0.5 after:left-[2px] 
+          after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all 
+          peer-checked:after:translate-x-full">
+        </div>
+      </label>
+    </td>
+
+    <!-- Actions -->
+    <td class="p-3 text-center flex justify-center gap-3">
+      
+      <!-- Edit -->
+      <button 
+        class="text-gray-500 hover:text-orange-500"
+        (click)="editBlog(blog.id)">
+        ✏️
+      </button>
+
+      <!-- Delete -->
+      <button 
+        class="text-gray-500 hover:text-red-500"
+         (click)="deleteBlog(blog, i)" 
+          [disabled]="blog.loading">
+        🗑️
+      </button>
+
+    </td>
+  </tr>
+</tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+    </div>
+</div>
+
+
+
+

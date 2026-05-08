@@ -1,0 +1,167 @@
+<div class="blog-page">
+    <!-- Navbar -->
+    <app-blog-header></app-blog-header> 
+
+    <div class="grid grid-cols-1 sm:mt-12 lg:grid-cols-12 gap-8 mt-[30px]">
+
+        <!-- Main Content (Left Column) -->
+        <div class="lg:col-span-8 space-y-8 bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+            <!-- Cover Image -->
+            <div class="rounded-xl overflow-hidden">
+                <img class="w-full h-auto object-cover" [src]="imagePreview"
+                    alt="App Development Cost Explained">
+            </div>
+
+            <!-- Header Section -->
+            <div>
+                <h1 class="text-2xl md:text-[28px] font-extrabold text-[#111] leading-tight mb-4">
+                    {{ title }}
+                </h1>
+
+                <div class="flex items-center justify-between text-sm py-3 border-b border-gray-200">
+                    <div class="flex items-center space-x-3 text-[var(--primary-orange)] font-semibold">
+                        <span class="hover:underline cursor-pointer">Admin</span>
+                        <i
+                            class="fas fa-share-nodes text-gray-500 hover:text-[var(--primary-blue)] cursor-pointer transition-colors"></i>
+                    </div>
+                    <div class="text-[#f14336] font-medium tracking-wide">
+                        {{created_at | date:'mediumDate'}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article text -->
+            <div class="prose max-w-none text-gray-700 !text-[15px] leading-relaxed space-y-5">
+                <div class="ck-content !text-14px !semi-bold"  [innerHTML]="safeHtml"></div>
+            </div>
+        </div>
+
+        <!-- Sidebar (Right Column) -->
+        <div class="lg:col-span-4 space-y-8">
+
+            <!-- Table of Contents Widget -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+                <h3 class="text-[17px] font-extrabold text-gray-900 mb-4 border-b border-gray-100 pb-3">Table of <span
+                        class="text-[var(--primary-blue)]">Contents</span></h3>
+                <ul class="space-y-[10px] text-[14px] text-gray-600 font-medium">
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span
+                            class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">agasctechnologies</span>
+                        <span class="text-gray-400">123</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span
+                            class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">technology</span>
+                        <span class="text-gray-400">34</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span
+                            class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">uncategorized</span>
+                        <span class="text-gray-400">2</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span
+                            class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">saas-product-development</span>
+                        <span class="text-gray-400">1</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">ui</span>
+                        <span class="text-gray-400">54</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span
+                            class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">automation</span>
+                        <span class="text-gray-400">1</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">saas</span>
+                        <span class="text-gray-400">67</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span
+                            class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">Artificial-intelligence</span>
+                        <span class="text-gray-400">23</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1 border-b border-dashed border-gray-200">
+                        <span class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">Software
+                            development</span>
+                        <span class="text-gray-400">1</span>
+                    </li>
+                    <li class="flex items-center justify-between py-1">
+                        <span class="hover:text-[var(--primary-blue)] cursor-pointer transition-colors">UI & UX/React
+                            Development</span>
+                        <span class="text-gray-400">15</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tags Widget -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+                <h3 class="text-[17px] font-extrabold text-gray-900 mb-4 border-b border-gray-100 pb-3">Tags</h3>
+                <div class="flex flex-wrap gap-[6px]">
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Air
+                        Buds under 15000</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Apple
+                        Watch</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Audio</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Realme
+                        Phone</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Smartphone
+                        under 10000</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Smartphone
+                        under 20000</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Smartphone
+                        under 30000</span>
+                    <span
+                        class="px-3 py-1.5 bg-[#f8f9fa] border border-gray-200 text-gray-500 rounded text-[12px] font-medium hover:bg-[var(--primary-blue)] hover:text-white hover:border-[var(--primary-blue)] cursor-pointer transition-all duration-200">Smartphone
+                        under 30000</span>
+                </div>
+            </div>
+
+            <!-- Related posts Widget -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+                <h3 class="text-[17px] font-extrabold text-gray-900 mb-4 border-b border-gray-100 pb-3">Related <span
+                        class="text-[var(--primary-blue)]">posts</span></h3>
+                <div class="space-y-5">
+
+                    <!-- Post Item -->
+               <ng-container *ngFor="let blog of relatedblogs">
+
+                   
+                    <div class="flex items-center gap-4 group cursor-pointer" (click)="navigateToBlog(blog.id)">
+                        <div class="w-16 h-[50px] flex-shrink-0 rounded-md overflow-hidden shadow-sm">
+                            <img [src]="blog.image" alt="thumb"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4
+                                class="text-[13px] font-bold text-[#2d3748] leading-snug line-clamp-2 group-hover:text-[var(--primary-blue)] transition-colors duration-200">
+                                {{blog.title}}</h4>
+                            <p class="text-[11px] font-medium text-gray-400 mt-1">{{blog.created_at | date:'mediumDate'}}</p>
+                        </div>
+                    </div>
+               </ng-container>
+
+
+                  
+
+                  
+
+                  
+ 
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <app-blog-footer></app-blog-footer>
+</div>

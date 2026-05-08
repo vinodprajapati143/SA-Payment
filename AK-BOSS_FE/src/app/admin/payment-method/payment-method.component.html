@@ -1,0 +1,112 @@
+<div class="admin-dashboard">
+    <div class="flex">
+        <app-admin-sidebar />
+        <div class="content">
+              <div class="head">
+              <h1 class="text-2xl leading-[48px] font-semibold text-gray-800 flex aling-center">Payment Methods</h1>
+            </div>
+            <div class="p-6 ">
+                <!-- Header -->
+                <!-- <div class="mb-6">
+                    <h1 class="text-2xl font-semibold text-gray-800">Payment Methods</h1>
+                    <p class="text-sm text-gray-500">Dashboard / Payment Methods</p>
+                </div> -->
+
+                <!-- Filters -->
+                <div class="bg-white p-4 rounded-lg shadow mb-6 flex flex-wrap gap-4 items-center">
+                    <input type="text" placeholder="Search By Name"
+                        class="border rounded px-4 py-2 w-64 focus:outline-none focus:ring">
+
+                    <input type="date" class="border rounded px-4 py-2 focus:outline-none focus:ring">
+
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Filter
+                    </button>
+
+                    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                        Reset
+                    </button>
+                </div>
+
+                <!-- Table -->
+                <div class="bg-white rounded-lg shadow overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-50 text-gray-600 uppercase text-xs">
+                            <tr>
+                                <th class="px-6 py-3 text-left">Name</th>
+                                <th class="px-6 py-3 text-left">Image</th>
+                                <th class="px-6 py-3 text-center">Status</th>
+                                <th class="px-6 py-3 text-center">Option</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="divide-y">
+
+                            <!-- Row -->
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <p class="font-medium">Stripe</p>
+                                    <p class="text-xs text-gray-400">Updated At: Sat, Aug 2, 2025 7:21 AM</p>
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <div class="w-16 h-8 bg-gray-200 flex items-center justify-center text-xs rounded">
+                                        Stripe
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 text-center">
+                                    <label class="inline-flex relative items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-500 
+                                after:content-[''] after:absolute after:top-0.5 after:left-[2px] 
+                                after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all 
+                                peer-checked:after:translate-x-full"></div>
+                                    </label>
+                                </td>
+
+                                <td class="px-6 py-4 text-center space-x-3">
+                                    <button (click)="editMethod()"class="text-blue-600 hover:underline">Edit</button>
+                                    <button class="text-gray-600 hover:underline">View</button>
+                                </td>
+                            </tr>
+
+                            <!-- Duplicate rows -->
+                            <tr>
+                                <td class="px-6 py-4">
+                                    <p class="font-medium">Paypal</p>
+                                    <p class="text-xs text-gray-400">Updated At: Mon, Oct 13, 2025 2:25 PM</p>
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <div class="w-16 h-8 bg-gray-200 flex items-center justify-center text-xs rounded">
+                                        PayPal
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 text-center">
+                                    <label class="inline-flex relative items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer">
+                                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-orange-500 
+                                after:content-[''] after:absolute after:top-0.5 after:left-[2px] 
+                                after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all 
+                                peer-checked:after:translate-x-full"></div>
+                                    </label>
+                                </td>
+
+                                <td class="px-6 py-4 text-center space-x-3">
+                                    <button class="text-blue-600 hover:underline">Edit</button>
+                                    <button class="text-gray-600 hover:underline">View</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

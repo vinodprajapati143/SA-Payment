@@ -1,0 +1,53 @@
+.bg-color {
+    border-radius: 0 0 0 60px;
+    background: var(--white);
+}
+
+.bg-color-whatsapp {
+    border-radius: 0 60px 0 0;
+    background: rgba(10, 126, 141, 0.20);
+}
+
+.chart-green-btn {
+    width: 60px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid var(--white);
+    background: linear-gradient(180deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+}
+
+.chart-red-btn {
+    width: 60px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid var(--white);
+    background: linear-gradient(180deg, #D32F2F 0%, #B71C1C 100%);
+}
+
+.play-btn {
+    width: 60px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid var(--white);
+    background: linear-gradient(180deg, var(--color-success) 0%, var(--color-success-dark) 100%);
+}
+
+.close-btn {
+    width: 60px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid var(--white);
+    background: linear-gradient(180deg, #D32F2F 0%, #B71C1C 100%);
+}
+
+.holiday-btn {
+    width: 60px;
+    height: 53px;
+    border-radius: 4px;
+    border: 1px solid var(--white);
+    background: linear-gradient(180deg, #FFD54F 0%, #F57F17 100%);
+}
+
+   
+
+

@@ -1,0 +1,69 @@
+<app-header></app-header>
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="min-h-[100vh] mt-12 bg-gray-50 flex flex-col items-center mb-12 px-4 py-6   " [class.blur-bg]="isLoading">
+  <!-- Header -->
+  <div class="w-full btn-bg-color from-pink-600 to-pink-500 text-white rounded-xl shadow-lg p-4 flex justify-between items-center">
+    <h2 class="text-xl font-bold">Add Amount</h2>
+    <button (click)="navigateToWithdrawal()" class="bg-white text-black text-sm font-semibold px-4 py-1 rounded-full shadow hover:bg-gray-100">
+      Withdrawal
+    </button>
+  </div>
+
+  <!-- User Card -->
+  <div class="w-full bg-white shadow-lg rounded-xl mt-6 overflow-hidden">
+    <div class="bg-black text-white text-center p-4">
+      <p class="font-semibold text-lg">{{userdata?.username}}</p>
+      <p class="text-sm opacity-80">{{userdata?.countryCode}}{{userdata?.phone}}</p>
+    </div>
+    <div class="flex items-center gap-4 p-5">
+      <img src="/assets/images/amount-wallet.svg" alt="wallet" class="w-12 h-12" />
+      <div>
+        <p class="text-gray-800 text-lg font-bold">₹ {{walletblance}}</p>
+        <p class="text-gray-500 text-sm">Current Balance</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Amount Input -->
+  <div class="w-full mt-6">
+    <label class="block text-gray-700 font-medium mb-2">Enter Amount</label>
+    <input
+      type="number"
+      placeholder="e.g. 1000"
+      [(ngModel)]="amount"
+      class="w-full rounded-lg border border-gray-300 px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
+    />
+  </div>
+
+  <!-- Quick Amount Buttons -->
+  <div class="w-full grid grid-cols-4 gap-3 mt-5">
+    <button (click)="setQuickAmount(100)" class="bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600">100</button>
+    <button (click)="setQuickAmount(200)" class="bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600">200</button>
+    <button (click)="setQuickAmount(500)" class="bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600">500</button>
+    <button (click)="setQuickAmount(1000)" class="bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600">1000</button>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="w-full mt-6">
+    <button
+    (click)="submitAddAmount()"
+      class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg shadow hover:bg-green-700 transition"
+    >
+      Submit
+    </button>
+  </div>
+
+  <!-- WhatsApp Button -->
+  <div class="w-full mt-4">
+    <button (click)="openWhatsApp()"
+      class="w-full flex items-center justify-center gap-2 btn-bg-color text-white font-semibold py-3 rounded-lg shadow hover:bg-pink-700 transition"
+    >
+      <img src="/assets/images/whatsapp.png" alt="whatsapp" class="w-5 h-5" />
+      WhatsApp Us
+    </button>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+

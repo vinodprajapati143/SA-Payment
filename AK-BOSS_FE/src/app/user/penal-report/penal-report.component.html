@@ -1,0 +1,188 @@
+<!-- Header -->
+<div id="top" class="min-h-screen bg-gray-100 font-sans">
+
+    <!-- Top Title -->
+    <app-header></app-header>
+    <app-floating-buttons />
+    <app-loader *ngIf="isLoading"></app-loader>
+    <!-- Yellow Title Bar -->
+     <div [class.blur-bg]="isLoading">
+    <div 
+        class="bg-[#EDF0F5] border border-solid border-black flex items-center justify-between px-4 h-14 border-b mt-[65px]">
+        <button (click)="goBack()"
+            class="bg-[var(--dark-teal)] flex justify-center items-center gap-x-1 text-white px-2 py-1 rounded shadow text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M18.3346 17.0163C16.2957 14.5274 14.4852 13.1152 12.903 12.7796C11.3207 12.4441 9.81436 12.3934 8.3838 12.6276V17.0846L1.66797 9.81172L8.3838 2.91797V7.15422C11.0291 7.17505 13.278 8.12408 15.1305 10.0013C16.9827 11.8785 18.0507 14.2169 18.3346 17.0163Z"
+                    fill="white" stroke="white" stroke-width="2" stroke-linejoin="round" />
+            </svg> Back
+        </button>
+        <h2 class="text-lg md:text-xl font-bold text-gray-900 text-center flex-1"> {{game_name}} PANEL CHART</h2>
+    </div>
+
+    <!-- Blue Description Section -->
+    <div
+        class="bg-[var(--dark-teal)] mt-2 border border-soli text-white px-4 py-3 text-xs text-center leading-relaxed border-b border-gray-500">
+        <p class="uppercase tracking-wide font-semibold mb-2"> {{game_name}} JODI RESULT CHART RECORDS</p>
+        <p>
+            AKBOSS  {{game_name}} jodi chart,  {{game_name}} jodi chart, old  {{game_name}} jodi chart, dpboss MILAN
+            MORNING chart,  {{game_name}} jodi record,  {{game_name}}jodi record,  {{game_name}} jodi chart 2015, MILAN
+            MORNING jodi chart 2012,  {{game_name}} jodi chart 2012 to 2023,  {{game_name}} final ank,  {{game_name}} jodi
+            chart.co,  {{game_name}} jodi chart matka,  {{game_name}} jodi chart book,  {{game_name}} matka chart, matka
+            jodi chart  {{game_name}}, matka  {{game_name}} chart, satta  {{game_name}} chart jodi,  {{game_name}} state
+            chart,  {{game_name}} chart result, डीपी बॉस, सट्टा चार्ट, सट्टा मटका जोड़ी चार्ट, सट्टा मटका जोड़ी चार्ट,
+            मिलान मॉर्निंग मटका जोड़ी चार्ट, सट्टा मटका मिलान मॉर्निंग चार्ट जोड़ी, मिलान मॉर्निंग सट्टा चार्ट, मिलान
+            मॉर्निंग जोड़ी चार्ट
+        </p>
+    </div>
+    <!-- Marquee Section -->
+    <app-marquree></app-marquree>
+    <!-- Main Content -->
+    <!-- Result Section -->
+    <div class="bg-white border border-solid border-black flex-col justify-center items-center shadow-md p-4 mt-2">
+        <div class="flex-col text-center">
+            <h3 class="text-xl font-bold text-gray-800"> {{game_name}}</h3>
+            <p class="text-lg font-bold text-gray-900">{{result}}</p>
+        </div>
+
+        <!-- Date Filter Section -->
+        <div class="flex justify-center items-center space-x-2 pt-4">
+            <input type="date" [(ngModel)]="fromDate"
+                class="btn rounded px-2 py-1 text-sm focus:outline-none min-w-[116px]">
+            <button (click)="loadPanelRecords()"
+                class="btn text-gray-800 px-3 py-1 rounded font-semibold hover:bg-yellow-500 text-sm">Search</button>
+            <input type="date" [(ngModel)]="toDate"
+                class="btn rounded px-2 py-1 text-sm focus:outline-none min-w-[116px]">
+        </div>
+    </div>
+    <div class="text-center my-3 flex items-center justify-center gap-1">
+        <button (click)="scrollTo('bottom')"
+            class="bg-[#EDF0F5] text-black flex items-center gap-x-2 px-4 border border-solid border-black py-1 rounded font-semibold">Go
+            To Bottom <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <g clip-path="url(#clip0_609_11911)">
+                    <path
+                        d="M23.0273 12.9023L12 23.9297L0.972656 12.9023L2.02734 11.8477L11.25 21.0703V0H12.75V21.0703L21.9727 11.8477L23.0273 12.9023Z"
+                        fill="black" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_609_11911">
+                        <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                </defs>
+            </svg></button>
+    </div>
+
+    <div class="bg-gray-100 px-2 lg:px-10 w-[calc(100%-1rem)] xl:w-[calc(100%-40rem)] mx-auto">
+        <!-- Title -->
+        <div class="bg-[var(--dark-teal)] text-white text-center font-bold py-2 rounded-t-md">
+             {{game_name}} PANEL CHART 2019 - 2025
+        </div>
+
+        <!-- Table -->
+  
+        <div class="overflow-x-auto">
+  <!-- Wrapper with fixed min-width for scroll -->
+  <div class="min-w-[700px]">
+    <!-- Fixed header row with days -->
+    <div class="grid grid-cols-7 gap-x-1 mb-1">
+      <div *ngFor="let day of weekDays"
+           class="bg-[#EDF0F5] text-center font-bold py-2 border border-black">
+        {{ day }}
+      </div>
+    </div>
+
+    <!-- Data rows -->
+        <div *ngFor="let row of weekRows" class="grid grid-cols-7 gap-x-1 mb-1">
+                <!-- Repeat This Card for Each Column -->
+                <div *ngFor="let cell of row" class="border-black border-l border-r border-b p-2 bg-[#EDF0F5] flex flex-col items-center">
+                    <div class="border border-sky-500 rounded px-2 py-0.5 text-xs 2xl:px-2 2xl:text-[14px] 2xl:font-semibold mb-1">{{cell.date | date: 'dd-M-yy'}}</div>
+                    <div *ngIf="cell" class="flex items-center">
+                        <div *ngIf="cell?.panelLeft"
+                            class="border border-orange-400 rounded-full px-1 py-2 text-xs 2xl:px-2 2xl:text-[14px] 2xl:font-semibold flex flex-col items-center leading-none mr-2">
+                            <span *ngFor="let digit of cell.panelLeft">{{digit}}</span>
+                        </div>
+                        <span *ngIf="cell?.jodi_value" class="text-lg font-bold text-red-600">{{ cell.jodi_value }}</span>
+                        <div *ngIf="cell?.panelRight"
+                            class="border border-orange-400 rounded-full px-1 py-2 text-xs 2xl:px-2 2xl:text-[14px] 2xl:font-semibold flex flex-col items-center leading-none ml-2">
+                                                       <span *ngFor="let digit of cell.panelRight">{{digit}}</span>
+
+                        </div>
+                    </div>
+                </div>             
+                <!-- Duplicate for Tue, Wed, etc... -->
+            </div>
+  </div>
+</div>
+
+        <!-- Footer -->
+        <div class="bg-[var(--dark-teal)] text-white text-center font-bold py-2 rounded-b-md">
+             {{game_name}}
+        </div>
+
+    </div>
+
+    <div id="bottom" class="text-center my-3 flex items-center justify-center gap-1">
+        <button (click)="scrollTo('top')"
+            class="bg-[#EDF0F5] text-black flex items-center gap-x-2 px-4 border border-solid border-black py-1 rounded font-semibold">Go
+            To Top
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <g clip-path="url(#clip0_609_11915)">
+                    <path
+                        d="M23.0273 11.0977L12 0.0703125L0.972656 11.0977L2.02734 12.1523L11.25 2.92969V24H12.75V2.92969L21.9727 12.1523L23.0273 11.0977Z"
+                        fill="black" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_609_11915">
+                        <rect width="24" height="24" fill="white" transform="matrix(1 0 0 -1 0 24)" />
+                    </clipPath>
+                </defs>
+            </svg></button>
+    </div>
+
+    <!-- Notice -->
+    <app-marquree></app-marquree>
+
+    <!-- Disclaimer -->
+    <div
+        class="bg-white text-black py-2 mt-2 font-bold text-2xl mb-2 flex items-center justify-center border-y border-y-solid border-y-black shadow">
+        -:DISCLAIMER:-
+    </div>
+
+    <div class="border-y border-y-solid border-y-black shadow py-2 mt-2 bg-[var(--dark-teal)] text-black">
+        <p class="px-4 text-sm text-white text-center leading-relaxed">
+            Visiting this site and browsing it is strictly recommended at your own risk. Every information available
+            here is
+            only according to informational purpose and based on astrology and number calculations. We are no associated
+            or
+            affiliated with any illegal Matka business. We make sure we follow all rules and regulations of the regions
+            where
+            you are accessing the website. There are also chances that the website may be banned in your area and after
+            that
+            if you are using it, you are solely dependable and responsible for any damage, loss or legal action taken.If
+            you
+            are the one who does not like our disclaimer it is advised that you leave our website immediately. Copying
+            of any
+            information/contents posted on the website is strictly prohibited and against the law.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <div
+        class="bg-white text-black py-2 mt-2 font-bold text-2xl mb-2 flex items-center justify-center border-y border-y-solid border-y-black shadow">
+        POWERD BY Ak247pro
+    </div>
+
+    <!-- Bottom Links -->
+    <div class="bg-cyan-700 h-20 flex items-center mt-2 justify-center border-y border-y-solid border-y-black shadow">
+        <div class="text-center text-white py-2 text-xs">
+            © 2011 - 2025 Ak247pro.com <br />
+            <a href="#" class="underline-none mx-1">About us</a> |
+            <a href="#" class="underline-none mx-1">Contact us</a> |
+            <a href="#" class="underline-none mx-1">Privacy & policy</a> |
+            <a href="#" class="underline-none mx-1">Term And Conditions</a>
+        </div>
+    </div>
+    </div>
+</div>
+
+

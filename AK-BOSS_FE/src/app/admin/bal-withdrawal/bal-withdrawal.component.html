@@ -1,0 +1,64 @@
+<div class="admin-dashboard">
+  <div class="lg:flex">
+    <app-admin-sidebar />
+    <div class="content">
+      <div class="head">
+        <h4>All User</h4>
+      </div>
+      <div class="p-6 bg-white shadow-md rounded-lg">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="sm:text-xl text-sm font-semibold">Balance Withdrawal</h2>
+          <input type="text" placeholder="Search"
+            class="border border-gray-300 rounded px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200 text-sm">
+            <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+              <tr class="text-nowrap">
+                <th class="px-4 py-2 text-left text-nowrap">User ID</th>
+                <th class="px-4 py-2 text-left text-nowrap">Name</th>
+                <th class="px-4 py-2 text-left text-nowrap">Request Date</th>
+                <th class="px-4 py-2 text-left text-nowrap">Payment Date</th>
+                <th class="px-4 py-2 text-left text-nowrap">Bank</th>
+                <th class="px-4 py-2 text-left text-nowrap">Payment Method</th>
+                <th class="px-4 py-2 text-left text-nowrap">Amount</th>
+                <th class="px-4 py-2 text-left text-nowrap">UPI ID</th>
+
+                <th class="px-4 py-2 text-left text-nowrap">Status</th>
+                <!-- <th class="px-4 py-2 text-left text-nowrap">Payment Type</th> -->
+                <th class="px-4 py-2 text-left text-nowrap">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr *ngFor="let user of users">
+                <td class="px-4 py-2">{{ user.batch_id }}</td>
+                <td class="px-4 py-2">{{ user.user_name }}</td>
+                <td class="px-4 py-2">{{ user.requested_at | date: 'dd-MM-yyyy hh:mm a':'IST'}}</td>
+                <td class="px-4 py-2">{{( user.processed_at | date: 'dd-MM-yyyy hh:mm a':'IST') || 'N/A'}}</td>
+                <td class="px-4 py-2">{{ user.bank_name || 'N/A' }}</td>
+                <td class="px-4 py-2">{{ user.payment_method }}</td>
+                <td class="px-4 py-2">{{ user.amount }}</td>
+                <td class="px-4 py-2">{{ user.upi_id || 'N/A' }}</td>
+                <td class="px-4 py-2" [ngClass]="{
+                  'text-green-600': user.status === 'approved',
+                  'text-red-600': user.status === 'rejected',
+                  'text-orange-500': user.status === 'pending'
+                }">{{ user.status | uppercase}}</td>
+                <td class="px-4 py-2">
+                  <button (click)="viewUser(user)" class="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1 rounded">
+              Update
+            </button>
+                </td>
+                <!-- <td class="px-4 py-2">{{ user.action }}</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

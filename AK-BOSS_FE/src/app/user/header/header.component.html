@@ -1,0 +1,22 @@
+ <div class="flex justify-between bg-blue-50 items-center fixed top-0 w-full z-50 pl-3">
+    <!-- Left -->
+    <div class="flex items-center gap-2">
+      <button class="relative">
+        <img src="/assets/images/bell.png" alt="bell" class="w-5 h-5">
+        <span class="absolute -top-1 -right-1 bg-red-500 text-xs text-white rounded-full px-1">5</span>
+      </button>
+    </div>
+    <span (click)="openDashboard()" class="logo"><img [src]="siteLogo" alt="logo"></span>
+
+    <!-- Right -->
+    <div class="flex items-center gap-2 bg-teal-500 header">
+      <button (click)="openWallet()" class="profile-header">
+        ₹{{userWalletBalance}}
+      </button>
+      <div>
+        <img (click)="openProfile()" src="/assets/images/user-profile.svg" alt="profile" class="w-7 h-7 rounded-full bg-white">
+      </div>
+    </div>
+  </div>
+
+

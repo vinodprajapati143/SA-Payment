@@ -1,0 +1,94 @@
+<app-header></app-header>
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="w-full mt-16 mb-[80px] bg-gray-50 min-h-screen" [class.blur-bg]="isLoading">
+
+  <!-- Earnings Section -->
+  <div class="grid grid-cols-2 gap-4 p-4 mt-4 card-bg">
+    <div class="flex flex-col justify-center items-center gap-y-2">
+      <div class="bg-white shadow-md rounded p-1 font-semibold text-center w-full">
+        <button class="card-layout text-[var(--dark-teal)] text-xs">Today Earn</button>
+      </div>
+      <div class="bg-white shadow-md rounded p-1 font-semibold text-center w-full">
+        <button class="card-layout text-xs">Amount ₹ 50</button>
+      </div>
+      <div class="bg-white shadow-md rounded p-1 font-semibold text-center w-full">
+        <button (click)="copyInviteLink()" class="card-layout text-xs">Copy Invite Link</button>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center items-center gap-y-2">
+      <div class="bg-white shadow-md rounded p-1 font-semibold text-center w-full">
+        <button class="card-layout text-[var(--dark-teal)] text-xs">1 Week Earn</button>
+      </div>
+      <div class="bg-white shadow-md rounded p-1 font-semibold text-center w-full">
+        <button class="card-layout text-xs">Amount ₹ 100</button>
+      </div>
+      <div class="bg-white shadow-md rounded p-1 font-semibold text-center w-full">
+        <button (click)="shareInvite()" class="card-layout text-xs">Share</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Referral List -->
+  <div class="px-2 mt-6 ">
+    <h2 class="text-center mb-2 referral-text">All Referral List</h2>
+
+    <div class="bg-white rounded-lg shadow border border-gray-200 mb-1">
+      <!-- Header Row -->
+     <div class="header-bg text-white text-[12px] font-semibold rounded-t-lg">
+        <div class="flex justify-between px-1 py-2">
+          <div class="min-w-[40px] sm:flex-1 px-1 text-left">S.No.</div>
+          <div class="flex-1 px-1 text-left">Invite Code</div>
+          <div class="flex-1 px-1 text-left">Username</div>
+          <div class="flex-1 px-1 text-left">Phone</div>
+        </div>
+      </div>
+
+      <!-- Data Row -->
+      <ng-container *ngFor="let transaction of referralList">
+        <div
+          (click)="transaction.active = !transaction.active"
+          class="flex justify-between border-t cursor-pointer hover:bg-gray-100"
+        >
+          <div class="min-w-[40px] px-1 text-[12px] sm:flex-1 py-2 text-left">{{ transaction.id }}</div>
+          <div class="flex-1 px-1 text-[12px] py-2 text-left">{{ transaction.invitee_code }}</div>
+          <div class="flex-1 px-1 text-[12px] py-2 text-left">{{ transaction.invitee_username }}</div>
+          <div class="flex-1 px-1 text-[12px] py-2 text-left">{{ maskLastFiveDigits(transaction.invitee_phone)}}</div>
+        </div>
+
+        <!-- Expanded Details -->
+        <ng-container *ngFor="let item of transaction.invitee_bid_commision">
+          <div *ngIf="transaction.active" class="p-1 border border-[var(--border-teal)] rounded-lg bg-white mx-2 my-1 shadow-sm">
+            <div class="grid grid-cols-2 text-sm border-b border-gray-300 px-2 pb-1">
+              <span class="font-semibold">Batch Id</span>
+              <span class="font-semibold text-right">{{ item.batch_id }}</span>
+            </div>
+            <div class="grid grid-cols-2 text-sm border-b border-gray-300 px-2 py-1">
+              <span class="font-semibold">Bid Amount</span>
+              <span class="text-[var(--commission-green)] font-semibold text-right">{{ item.bid_amount }}</span>
+            </div>
+            <div class="grid grid-cols-2 text-sm border-b border-gray-300 px-2 py-1">
+              <span class="font-semibold">Commission</span>
+              <span class="text-[var(--commission-green)] font-semibold text-right">₹{{ item.commission }}</span>
+            </div>
+            <div class="grid grid-cols-2 text-sm border-b border-gray-300 px-2 py-1">
+              <span class="font-semibold">Game Name</span>
+              <span class="font-semibold text-right">{{ item.game_name }}</span>
+            </div>
+            <div class="grid grid-cols-2 text-sm px-2 pt-1">
+              <span class="font-semibold">Bet Date</span>
+              <span class="font-semibold text-right">{{ item.bet_date | date:'dd-MM-yyyy hh:mm a':'IST' }}</span>
+            </div>
+
+          </div>
+        </ng-container>
+      </ng-container>
+
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+

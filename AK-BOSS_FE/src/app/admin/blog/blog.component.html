@@ -1,0 +1,133 @@
+<div class="admin-dashboard">
+    <div class="flex">
+        <app-admin-sidebar />
+
+        <div class="content">
+
+            <div class="head">
+                <h1 class="text-2xl leading-[48px] font-semibold text-gray-800 flex aling-center">Create Blog</h1>
+            </div>
+
+            <div class="p-6 ">
+
+                <!-- Card -->
+                <div class="bg-white rounded-lg shadow">
+
+                    <!-- Card Header -->
+                    <div class="border-b px-6 py-4">
+                        <h2 class="font-semibold text-gray-700">Create A New Blog</h2>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-6 space-y-6">
+
+                        <!-- Blog Title & Image -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                            <!-- Title -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">
+                                    Title
+                                </label>
+                                <input type="text" [(ngModel)]="title" placeholder="Enter Blog Title"
+                                    class="w-full border rounded px-4 py-2">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">
+                                    Sub-Description
+                                </label>
+                                <input type="text" [(ngModel)]="subDescription" placeholder="Enter Blog Sub-Description"
+                                    class="w-full border rounded px-4 py-2">
+                            </div>
+
+                            <!-- Image -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600 mb-1">
+                                    Image <span class="text-red-500">(1150×777)</span>
+                                </label>
+                                <input type="file" #fileInput (change)="onFileChange($event)"
+                                    class="w-full border rounded px-3 py-2">
+                                <p class="text-xs text-gray-400 mt-1">
+                                    Accepted Image Type: png, jpg, jpeg
+                                </p>
+                            </div>
+
+
+                            <div *ngIf="imagePreview" (click)="toggleImageModal()"
+                                class="relative border-2 border-dashed border-gray-300 rounded overflow-hidden h-20 w-full bg-gray-50 flex items-center justify-center cursor-pointer hover:border-orange-400 transition-colors group">
+                                <img [src]="imagePreview" alt="Preview" class="max-w-full max-h-full object-cover">
+                                <div class="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors"></div>
+                            </div>
+                        </div>
+
+                        <!-- Blog Description -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">
+                                Description
+                            </label>
+
+                            <!-- <ckeditor [editor]="Editor" [(ngModel)]="blogContent" [config]="config"
+                                (ready)="onReady($event)">
+                            </ckeditor> -->
+
+                            <div class="main-container">
+                                <div
+                                    class="editor-container editor-container_classic-editor editor-container_include-block-toolbar editor-container_include-fullscreen">
+                                    <div class="editor-container__editor">
+                                        <ckeditor [(ngModel)]="blogContent"  [editor]="Editor" [config]="config" *ngIf="Editor && config"
+                                            (ready)="onReady($event)" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <!-- AI Buttons -->
+                        <div class="flex flex-wrap gap-4">
+                            <button
+                                class="flex items-center gap-2 px-4 py-2 border rounded text-orange-600 hover:bg-orange-50">
+                                🤖 Generate AI Images
+                            </button>
+                            <button
+                                class="flex items-center gap-2 px-4 py-2 border rounded text-orange-600 hover:bg-orange-50">
+                                ✨ Generate Text With AI
+                            </button>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="flex justify-end">
+                            <button (click)="onSubmit()"
+                                class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600">
+                                Submit
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image View Modal -->
+<div *ngIf="showImageModal" class="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" (click)="toggleImageModal()"></div>
+    <div
+        class="relative max-w-[90vw] max-h-[90vh] bg-white rounded-lg overflow-hidden shadow-2xl animate-in zoom-in duration-200">
+        <button (click)="toggleImageModal()"
+            class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/40 text-white rounded-full transition-colors z-10">
+            <span class="text-2xl">&times;</span>
+        </button>
+        <div class="overflow-auto max-h-[90vh]">
+            <img [src]="imagePreview" alt="Full Image" class="block w-full h-auto object-contain">
+        </div>
+    </div>
+</div>

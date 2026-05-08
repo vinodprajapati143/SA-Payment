@@ -1,0 +1,20 @@
+  <header class="bg-white text-center border-b border-b-solid border-b-black shadow flex justify-between items-center px-4 py-2 fixed w-full top-0 z-50">
+  <!-- Left side empty space (for balance) -->
+  <div class="w-1/3 sm:block hidden "></div>
+
+  <!-- Center Logo -->
+  <div class="w-1/3 flex justify-center pl-[40px] sm:pl-0">
+    <h1 (click)="goToHome()" class="md:text-[2rem] font-bold tracking-widest text-[var(--dark-teal)] cursor-pointer akboss-text"><img [src]="siteLogo" alt="logo"></h1>
+  </div>
+
+  <!-- Right side button -->
+  <div class="w-1/3 flex justify-end">
+    
+    <button (click)="login()" class="flex items-center gap-1 px-4 py-1 bg-[var(--dark-teal)] font-semibold cursor-pointer text-white rounded">
+      Login<i class="fa fa-user"></i> 
+    </button>
+  </div>
+</header>
+
+
+

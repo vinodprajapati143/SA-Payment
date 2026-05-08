@@ -1,0 +1,63 @@
+<div class="bg-gradient-to-b from-[var(--profile-blue)] to-[var(--profile-teal)] rounded-2xl p-[25px] w-full max-w-md relative">
+  <div class="w-20 h-1 bg-white rounded-full mt-2 mb-4 mx-auto"></div>
+  <h2 class="text-white text-lg font-semibold mb-6 text-center">
+    Change Password
+  </h2>
+
+  <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()" class="space-y-5">
+    <!-- Old Password -->
+    <div class="relative mt-4">
+      <input
+        [type]="showOldPassword ? 'text' : 'password'"
+        placeholder="Enter Old Password"
+        formControlName="oldPassword"
+        class="w-full bg-transparent border border-white text-white rounded-full py-3 px-4 focus:outline-none"
+      />
+      <button
+        type="button"
+        (click)="toggleVisibility('old')"
+        class="absolute top-[5%] right-[18px] translate-y-[44%]"
+        style="filter: invert(1);"
+      >
+        <i [class]="showOldPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+      </button>
+    </div>
+
+    <!-- New Password -->
+    <div class="relative mt-2">
+      <input
+        [type]="showNewPassword ? 'text' : 'password'"
+        placeholder="Enter New Password"
+        formControlName="newPassword"
+        class="w-full bg-transparent border border-white text-white rounded-full py-3 px-4 focus:outline-none"
+      />
+      <button
+        type="button"
+        (click)="toggleVisibility('new')"
+        class="absolute top-[5%] right-[18px] translate-y-[44%]"
+        style="filter: invert(1);"
+      >
+        <i [class]="showNewPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+      </button>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="changePasswordForm.invalid || isLoading"
+      class="w-full btn-bg-color text-white font-semibold rounded-full py-3 shadow-md"
+    >
+      {{ isLoading ? 'Updating...' : 'Submit' }}
+    </button>
+
+    <button
+      type="button"
+      (click)="closeModal()"
+      class="w-full btn-bg-color text-white font-semibold rounded-full py-3 shadow-md"
+    >
+      Cancel
+    </button>
+  </form>
+</div>
+
+
+

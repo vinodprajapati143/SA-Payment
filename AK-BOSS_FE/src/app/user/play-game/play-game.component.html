@@ -1,0 +1,340 @@
+<app-header></app-header>
+<app-loader *ngIf="isLoading"></app-loader>
+<div [class.blur-bg]="isLoading">
+  <!-- Single Ank -->
+@if(this.game.entrytype == 'singleank'){
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+    <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Single Ank</h2>
+    <div class="flex justify-center mt-2 gap-2">
+        <div class="flex items-center w-full text-center px-3 py-2 gap-x-1 rounded-md border outline-none border-teal-500" [class.opacity-50]="isOpenDisabled"  (click)="onRadioClick('open')">
+          <input id="bordered-radio-1" type="radio" value="open" [(ngModel)]="selectedGameTimeType" name="bordered-radio" class="text-blue-600 border-gray-300 "
+            [disabled]="isOpenDisabled"
+         
+          >
+          <label for="bordered-radio-1" class="text-sm font-medium text-black ">Open Game</label>
+        </div>
+        <div class="flex items-center w-full text-center px-3 py-2 gap-x-1 rounded-md border outline-none border-teal-500" [class.opacity-50]="isCloseDisabled"   (click)="onRadioClick('close')">
+          <input checked id="bordered-radio-2" type="radio" value="close" [(ngModel)]="selectedGameTimeType" name="bordered-radio"
+            class="text-blue-600 border-gray-300 "
+              [disabled]="isCloseDisabled"
+        >
+          <label for="bordered-radio-2" class="text-sm font-medium text-black ">Close Game</label>
+        </div>
+      </div>
+  
+    <!-- Date -->
+    <div class="btn-bg-color from-teal-500 to-indigo-600 text-white font-bold text-center py-2 rounded-md mt-2">
+      {{date | date:'dd-MM-yyyy'}}
+    </div>
+    <!-- Input Section -->
+    <div class="grid grid-cols-2 gap-4 bg-blue-50 py-2 rounded">
+      <!-- Enter Digit -->
+      <div class="flex flex-col items-center">
+        <label class="text-gray-700 text-sm font-medium mb-1">Enter Digit</label>
+        <input type="text" placeholder="Enter Digit"
+          class="w-full text-center px-3 py-2 rounded-md border outline-none border-teal-500 focus:ring-2 focus:ring-indigo-400"
+          [(ngModel)]="digit" maxlength="1" pattern="[0-9]" />
+      </div>
+      <!-- Enter Amount -->
+      <div class="flex flex-col items-center">
+        <label class="text-gray-700 text-sm font-medium mb-1">Enter Amount</label>
+        <input type="text" placeholder="Enter Amount" class="w-full text-center px-3 py-2 rounded-md border outline-none 
+              border-teal-500 focus:ring-2 focus:ring-indigo-400" [(ngModel)]="amount" />
+      </div>
+    </div>
+    <!-- Add Button -->
+    <button [disabled]="!isDigitValidsingleank()"
+      class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-medium py-2 rounded-md mt-3 hover:opacity-90"
+      (click)="addNumber()">
+      Add Number
+    </button>
+    <!-- Numbers List -->
+    <div class="bg-blue-50 p-2 rounded">
+      <!-- Header -->
+      <div class="flex flex-row justify-between gap-2 px-2 items-center font-medium text-gray-700 mb-2">
+        <div class="text-center">Digit</div>
+        <div class="text-center">Amount</div>
+        <div class="text-center">Delete</div>
+      </div>
+
+      <div *ngFor="let item of numbers; let i = index" class="flex flex-row justify-between gap-2 items-center mb-2">
+        <input type="text" class="border rounded-md px-3 py-2 text-center max-w-[60px]" [value]="item.digit" readonly />
+        <input type="text" class="border rounded-md px-3 py-2 text-center min-w-[100px] flex-1" [value]="item.amount"
+          readonly />
+        <button
+          class="btn-bg-color max-w-[60px] px-4 from-teal-500 to-indigo-500 text-white rounded-md h-10 flex items-center justify-center"
+          (click)="removeNumber(i)">
+          ✕
+        </button>
+      </div>
+    </div>
+    <!-- Total Amount -->
+    <div class="mt-4">
+      <label class="block text-gray-600 font-medium">Total Amount</label>
+      <input type="text" class="w-full border rounded-md px-3 py-2 font-semibold text-gray-800"
+        [value]="totalAmount | currency:'INR':'symbol':'1.0-0'" readonly />
+    </div>
+    <!-- Submit -->
+    <button [disabled]="isLoading"
+      class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+      (click)="submit()">
+      SUBMIT
+    </button>
+    <button
+      class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+      (click)="back()">
+      Back
+    </button>
+</div>
+}
+
+@if(this.game.entrytype == 'jodi'){
+
+<!-- Jodi Ank -->
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+  <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Jodi</h2>
+  <div class="btn-bg-color from-teal-500 to-indigo-600 text-white font-bold text-center py-2 rounded-md mt-2">
+    {{date | date:'dd-MM-yyyy'}}
+  </div>
+  <div class="grid grid-cols-2 gap-4 bg-blue-50 py-2 rounded">
+    <div class="flex flex-col items-center">
+      <label class="text-gray-700 text-sm font-medium mb-1">Enter Digit</label>
+      <input type="text" placeholder="Enter Digit"
+        class="w-full text-center px-3 py-2 rounded-md border outline-none border-teal-500 focus:ring-2 focus:ring-indigo-400"
+        [(ngModel)]="digit" maxlength="2" pattern="[0-9]{2}" required  />
+    </div>
+    <div class="flex flex-col items-center">
+      <label class="text-gray-700 text-sm font-medium mb-1">Enter Amount</label>
+      <input type="text" placeholder="Enter Amount" class="w-full text-center px-3 py-2 rounded-md border outline-none 
+             border-teal-500 focus:ring-2 focus:ring-indigo-400" [(ngModel)]="amount" />
+    </div>
+  </div>
+  <button [disabled]="!isDigitValidjodi()"
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-medium py-2 rounded-md mt-3 hover:opacity-90"
+    (click)="addNumber()">
+    Add Number
+  </button>
+  <div class="bg-blue-50 p-2 rounded">
+    <div class="flex flex-row justify-between gap-2 px-2 items-center font-medium text-gray-700 mb-2">
+      <div class="text-center">Digit</div>
+      <div class="text-center">Amount</div>
+      <div class="text-center">Delete</div>
+    </div>
+    <div *ngFor="let item of numbers; let i = index" class="flex flex-row justify-between gap-2 items-center mb-2">
+      <input type="text" class="border rounded-md px-3 py-2 text-center max-w-[60px]" [value]="item.digit" readonly />
+      <input type="text" class="border rounded-md px-3 py-2 text-center min-w-[100px] flex-1" [value]="item.amount"
+        readonly />
+      <button
+        class="btn-bg-color max-w-[60px] px-4 from-teal-500 to-indigo-500 text-white rounded-md h-10 flex items-center justify-center"
+        (click)="removeNumber(i)">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <label class="block text-gray-600 font-medium">Total Amount</label>
+    <input type="text" class="w-full border rounded-md px-3 py-2 font-semibold text-gray-800"
+      [value]="totalAmount | currency:'INR':'symbol':'1.0-0'" readonly />
+  </div>
+  <button [disabled]="isLoading"
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="submit()">
+    SUBMIT
+  </button>
+  <button
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="back()">
+    Back
+  </button>
+</div>
+}
+
+@if(this.game.entrytype == 'singlepanna'){
+
+<!-- Single Panna -->
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+  <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Single Panna</h2>
+  <div class="flex justify-center mt-2 gap-2">
+        <div class="flex items-center w-full text-center px-3 py-2 gap-x-1 rounded-md border outline-none border-teal-500" [class.opacity-50]="isOpenDisabled"  (click)="onRadioClick('open')">
+          <input id="bordered-radio-1" type="radio" value="open" [(ngModel)]="selectedGameTimeType" name="bordered-radio" class="text-blue-600 border-gray-300 "
+            [disabled]="isOpenDisabled"
+         
+          >
+          <label for="bordered-radio-1" class="text-sm font-medium text-black ">Open Game</label>
+        </div>
+        <div class="flex items-center w-full text-center px-3 py-2 gap-x-1 rounded-md border outline-none border-teal-500" [class.opacity-50]="isCloseDisabled"   (click)="onRadioClick('close')">
+          <input checked id="bordered-radio-2" type="radio" value="close" [(ngModel)]="selectedGameTimeType" name="bordered-radio"
+            class="text-blue-600 border-gray-300 "
+              [disabled]="isCloseDisabled"
+        >
+          <label for="bordered-radio-2" class="text-sm font-medium text-black ">Close Game</label>
+        </div>
+      </div>
+  <!-- Date -->
+  <div class="btn-bg-color from-teal-500 to-indigo-600 text-white font-bold text-center py-2 rounded-md mt-2">
+    {{date | date:'dd-MM-yyyy'}}
+  </div>
+  <!-- Input Section -->
+  <div class="grid grid-cols-2 gap-4 bg-blue-50 py-2 rounded">
+    <!-- Enter Digit -->
+    <div class="flex flex-col items-center">
+      <label class="text-gray-700 text-sm font-medium mb-1">Enter Digit</label>
+      <input type="text" placeholder="Enter Digit"
+        class="w-full text-center px-3 py-2 rounded-md border outline-none border-teal-500 focus:ring-2 focus:ring-indigo-400"
+        [(ngModel)]="digit" maxlength="3" pattern="[0-9]" />
+    </div>
+    <!-- Enter Amount -->
+    <div class="flex flex-col items-center">
+      <label class="text-gray-700 text-sm font-medium mb-1">Enter Amount</label>
+      <input type="text" placeholder="Enter Amount" class="w-full text-center px-3 py-2 rounded-md border outline-none 
+             border-teal-500 focus:ring-2 focus:ring-indigo-400" [(ngModel)]="amount" />
+    </div>
+  </div>
+  <!-- Add Button -->
+  <button [disabled]="!isDigitValidsinglepanna()"
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-medium py-2 rounded-md mt-3 hover:opacity-90"
+    (click)="addNumber()">
+    Add Number
+  </button>
+  <!-- Numbers List -->
+  <div class="bg-blue-50 p-2 rounded">
+    <!-- Header -->
+    <div class="flex flex-row justify-between gap-2 px-2 items-center font-medium text-gray-700 mb-2">
+      <div class="text-center">Digit</div>
+      <div class="text-center">Amount</div>
+      <div class="text-center">Delete</div>
+    </div>
+
+    <div *ngFor="let item of numbers; let i = index" class="flex flex-row justify-between gap-2 items-center mb-2">
+      <input type="text" class="border rounded-md px-3 py-2 text-center max-w-[60px]" [value]="item.digit" readonly />
+      <input type="text" class="border rounded-md px-3 py-2 text-center min-w-[100px] flex-1" [value]="item.amount"
+        readonly />
+      <button
+        class="btn-bg-color max-w-[60px] px-4 from-teal-500 to-indigo-500 text-white rounded-md h-10 flex items-center justify-center"
+        (click)="removeNumber(i)">
+        ✕
+      </button>
+    </div>
+  </div>
+  <!-- Total Amount -->
+  <div class="mt-4">
+    <label class="block text-gray-600 font-medium">Total Amount</label>
+    <input type="text" class="w-full border rounded-md px-3 py-2 font-semibold text-gray-800"
+      [value]="totalAmount | currency:'INR':'symbol':'1.0-0'" readonly />
+  </div>
+  <!-- Submit -->
+  <button [disabled]="isLoading"
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="submit()">
+    SUBMIT
+  </button>
+  <button
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="back()">
+    Back
+  </button>
+</div>
+}
+
+@if(this.game.entrytype == 'doublepanna'){
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+  <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Double Panna</h2>
+  <div class="flex justify-center mt-2 gap-2">
+    <div class="p-4 bg-green-100 rounded-lg text-center">
+    <h3 class="text-lg font-semibold text-green-700">
+      Double Panna Game Not Available 🎮
+    </h3>
+    <p class="text-gray-600">Please check other games!</p>
+  </div>
+  </div>
+
+
+  <!-- Total Amount -->
+  <div class="mt-4">
+  <button
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="back()">
+    Back
+  </button>
+</div>
+</div>
+
+}
+
+@if(this.game.entrytype == 'triplepanna'){
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+  <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Triple Panna</h2>
+  <div class="flex justify-center mt-2 gap-2">
+    <div class="p-4 bg-green-100 rounded-lg text-center">
+    <h3 class="text-lg font-semibold text-green-700">
+      Triple Panna Game Not Available 🎮
+    </h3>
+    <p class="text-gray-600">Please check other games!</p>
+  </div>
+  </div>
+
+
+  <!-- Total Amount -->
+  <div class="mt-4">
+  <button
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="back()">
+    Back
+  </button>
+</div>
+</div>
+}
+
+@if(this.game.entrytype == 'halfsangama'){
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+  <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Half Sangama</h2>
+  <div class="flex justify-center mt-2 gap-2">
+    <div class="p-4 bg-green-100 rounded-lg text-center">
+    <h3 class="text-lg font-semibold text-green-700">
+      Half Sangama Game Not Available 🎮
+    </h3>
+    <p class="text-gray-600">Please check other games!</p>
+  </div>
+  </div>
+
+
+  <!-- Total Amount -->
+  <div class="mt-4">
+  <button
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="back()">
+    Back
+  </button>
+</div>
+</div>
+}
+
+@if(this.game.entrytype == 'fullsangam'){
+<div class="max-w-full px-3 min-h-[90vh] mx-auto bg-blue-50 rounded-lg shadow my-14">
+  <h2 class="text-lg font-semibold text-center text-teal-700 uppercase">{{ game.name }} - Full Sangam</h2>
+  <div class="flex justify-center mt-2 gap-2">
+    <div class="p-4 bg-green-100 rounded-lg text-center">
+    <h3 class="text-lg font-semibold text-green-700">
+      Full Sangam Game Not Available 🎮
+    </h3>
+    <p class="text-gray-600">Please check other games!</p>
+  </div>
+  </div>
+
+  <!-- Total Amount -->
+  <div class="mt-4">
+  <button
+    class="w-full btn-bg-color from-teal-500 to-indigo-600 text-white font-semibold mb-1 py-2 rounded-md mt-4 hover:opacity-90"
+    (click)="back()">
+    Back
+  </button>
+</div>
+</div>
+}
+
+</div>
+
+<app-footer></app-footer>
+
+

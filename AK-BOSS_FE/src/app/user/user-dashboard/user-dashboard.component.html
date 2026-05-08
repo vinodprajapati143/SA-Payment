@@ -1,0 +1,109 @@
+<div class="min-h-screen bg-gray-100 mb-[5rem]">
+
+  <!-- Top Navbar -->
+   <app-header></app-header>
+<app-loader *ngIf="isLoading"></app-loader>
+  <!-- Banner -->
+  <div class=" flex flex-col mt-16" [class.blur-bg]="isLoading">
+    <div class="px-8 py-4 mb-4 bg-color">
+      <div
+        class="bg-gradient-to-r from-teal-500 to-blue-500 rounded-xl justify-around shadow-lg p-4 flex items-center gap-4 text-white">
+        <img src="assets/images/banner.png" alt="banner" class="w-[10rem] h-[6rem] object-contain">
+        <div>
+          <p class="text-sm">Unlimited Storage</p>
+          <h2 class="text-xl font-bold">30 Years</h2>
+          <p class="text-xs">Offer till may 26</p>
+          <button class="mt-2 bg-white text-black px-4 py-1 rounded shadow">Button</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div class="flex h-[3rem] items-center justify-center bg-color-whatsapp">
+      <button (click)="openWhatsApp()" class="px-4 whatshap-btn text-white py-1 rounded-lg font-bold flex justify-center items-center gap-2">
+        <img src="/assets/images/whatsapp.png" class="w-5 h-5"> +91 9575259525
+      </button>
+    </div>
+  </div>
+
+  <!-- Game Card 1 -->
+  <div class="max-w-full mx-auto border border-gray-400 rounded shadow-md overflow-hidden px-2 md:px-4">
+
+    <!-- Body -->
+    <div class="border mt-2 border-black w-full max-w-full mx-auto" *ngFor="let game of games">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-gray-300 to-cyan-200 text-center py-2">
+        <h2 class="text-xl font-bold tracking-wide text-black">{{ game.name }}</h2>
+      </div>
+      <!-- Body -->
+      <div class="bg-gradient-to-b from-[var(--dark-teal)] to-[var(--dark-teal-dark)] text-center p-2 flex items-center justify-between ">
+        <!-- Chart Button -->
+        <button (click)="openChart()"
+         [ngClass]="game.status === 'Close'?'close-btn':game.status === 'Play'?'play-btn':game.status === 'Holiday'?'holiday-btn':''"
+        class="flex flex-col items-center text-white text-sm font-medium 
+                   bg-gradient-to-b from-green-500 to-green-600 rounded-lg px-3 py-2 shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M5 9H9V10H5V9ZM5 6.5H11V7.5H5V6.5ZM5 11.5H7.5V12.5H5V11.5Z" fill="white" />
+            <path
+              d="M12.5 2.5H11V2C11 1.73478 10.8946 1.48043 10.7071 1.29289C10.5196 1.10536 10.2652 1 10 1H6C5.73478 1 5.48043 1.10536 5.29289 1.29289C5.10536 1.48043 5 1.73478 5 2V2.5H3.5C3.23478 2.5 2.98043 2.60536 2.79289 2.79289C2.60536 2.98043 2.5 3.23478 2.5 3.5V14C2.5 14.2652 2.60536 14.5196 2.79289 14.7071C2.98043 14.8946 3.23478 15 3.5 15H12.5C12.7652 15 13.0196 14.8946 13.2071 14.7071C13.3946 14.5196 13.5 14.2652 13.5 14V3.5C13.5 3.23478 13.3946 2.98043 13.2071 2.79289C13.0196 2.60536 12.7652 2.5 12.5 2.5ZM6 2H10V4H6V2ZM12.5 14H3.5V3.5H5V5H11V3.5H12.5V14Z"
+              fill="white" />
+          </svg>
+          Chart
+        </button>
+
+        <!-- Middle Text -->
+        <div>
+          <div class="text-white font-bold text-xl">{{ game.result }}</div>
+          <div class="text-xs">
+            <span class="text-white">Open: {{ game.open_time }}</span>
+            <span class="text-orange-500 ml-2 font-semibold">Close: {{ game.close_time }}</span>
+          </div>
+        </div>
+
+        <!-- Play Button -->
+        <button *ngIf="game.status === 'Close'" class="flex flex-col items-center justify-center text-white text-sm font-medium close-btn 
+                   bg-gradient-to-b from-green-500 to-green-600 rounded-lg px-3 py-2 shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 10 10" fill="none">
+            <path
+              d="M5.00052 5.93385L1.73385 9.20052C1.61163 9.32274 1.45608 9.38385 1.26719 9.38385C1.0783 9.38385 0.922743 9.32274 0.800521 9.20052C0.678298 9.0783 0.617188 8.92274 0.617188 8.73385C0.617188 8.54497 0.678298 8.38941 0.800521 8.26719L4.06719 5.00052L0.800521 1.73385C0.678298 1.61163 0.617188 1.45608 0.617188 1.26719C0.617188 1.0783 0.678298 0.922743 0.800521 0.800521C0.922743 0.678298 1.0783 0.617188 1.26719 0.617188C1.45608 0.617188 1.61163 0.678298 1.73385 0.800521L5.00052 4.06719L8.26719 0.800521C8.38941 0.678298 8.54497 0.617188 8.73385 0.617188C8.92274 0.617188 9.0783 0.678298 9.20052 0.800521C9.32274 0.922743 9.38385 1.0783 9.38385 1.26719C9.38385 1.45608 9.32274 1.61163 9.20052 1.73385L5.93385 5.00052L9.20052 8.26719C9.32274 8.38941 9.38385 8.54497 9.38385 8.73385C9.38385 8.92274 9.32274 9.0783 9.20052 9.20052C9.0783 9.32274 8.92274 9.38385 8.73385 9.38385C8.54497 9.38385 8.38941 9.32274 8.26719 9.20052L5.00052 5.93385Z"
+              fill="white" />
+          </svg>
+          Close
+        </button>
+
+          <!-- Play Button -->
+        <button *ngIf="game.status === 'Play'" class="flex flex-col items-center text-white text-sm font-medium play-btn
+                   bg-gradient-to-b from-green-500 to-green-600 rounded-lg px-3 py-2 shadow-md" (click)="playGame(game)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M14.274 6.23424C14.5942 6.40451 14.862 6.6587 15.0488 6.96956C15.2355 7.28042 15.3342 7.63625 15.3342 7.9989C15.3342 8.36156 15.2355 8.71738 15.0488 9.02824C14.862 9.33911 14.5942 9.59329 14.274 9.76357L5.73264 14.4082C4.3573 15.1569 2.66797 14.1836 2.66797 12.6442V3.35424C2.66797 1.81424 4.3573 0.84157 5.73264 1.5889L14.274 6.23424Z"
+              fill="white" />
+          </svg>
+          Play
+        </button>
+
+          <button *ngIf="game.status === 'Holiday'" class="flex flex-col items-center text-white text-sm font-medium holiday-btn
+                   bg-gradient-to-b from-green-500 to-green-600 rounded-lg px-3 py-2 shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M8.00174 1.10938C4.08174 1.10938 0.890625 3.90049 0.890625 7.3316C0.890625 10.7627 4.08174 13.5538 8.00174 13.5538C8.73513 13.553 9.46493 13.4513 10.1706 13.2516L12.6284 14.816C12.7275 14.8795 12.8477 14.9011 12.9626 14.8761C13.0776 14.8512 13.178 14.7816 13.2417 14.6827C13.2958 14.6137 13.3283 14.5302 13.3351 14.4427V11.4516C13.8912 10.9181 14.3349 10.2788 14.6403 9.57123C14.9456 8.86367 15.1062 8.10219 15.1128 7.3316C15.1128 3.90049 11.9217 1.10938 8.00174 1.10938ZM13.264 7.99826H9.56174C9.53678 7.99849 9.51212 8.00372 9.48922 8.01365C9.46631 8.02357 9.44563 8.03799 9.4284 8.05604L7.07285 10.5627C7.05645 10.5806 7.03655 10.595 7.01439 10.6049C6.99222 10.6149 6.96825 10.6202 6.94396 10.6205H5.86396C5.83357 10.6203 5.80372 10.6124 5.77713 10.5977C5.75054 10.583 5.72805 10.5619 5.71171 10.5363C5.69536 10.5107 5.68569 10.4814 5.68356 10.451C5.68143 10.4207 5.68691 10.3904 5.69951 10.3627L6.79729 7.99826H3.31729C3.28437 7.99753 3.25222 7.9881 3.22412 7.97092C3.19602 7.95375 3.17297 7.92945 3.15729 7.90049L1.95729 5.67826H2.77507C2.80794 5.67876 2.84035 5.68614 2.8702 5.69992C2.90006 5.7137 2.92669 5.73357 2.9484 5.75826L3.64174 6.50938C3.65918 6.53101 3.68169 6.54801 3.70727 6.55887C3.73286 6.56972 3.76072 6.57409 3.7884 6.5716L6.53507 6.40271L5.64618 4.82493H6.93062C6.98094 4.8241 7.02986 4.84146 7.0684 4.87382L8.72618 6.22049L11.6995 6.06493C11.8456 6.05489 11.9921 6.07452 12.1304 6.12264C12.2686 6.17076 12.3957 6.24638 12.504 6.34493L13.6017 7.33604C13.6503 7.39744 13.6802 7.47149 13.688 7.54939C13.6957 7.6273 13.6809 7.70578 13.6453 7.77552C13.6097 7.84526 13.5549 7.90332 13.4873 7.94281C13.4197 7.98229 13.3422 8.00154 13.264 7.99826Z"
+              fill="white" />
+          </svg>
+          Holiday
+        </button>
+      </div>
+    </div>
+
+ 
+ 
+
+  </div>
+
+
+
+  <!-- Bottom Nav -->
+
+</div>
+<app-footer></app-footer>
+
+

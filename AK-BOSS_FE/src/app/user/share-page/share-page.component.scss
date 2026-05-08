@@ -1,0 +1,44 @@
+.card-bg {
+  border-radius: 10px;
+  margin: 0 6px;
+  background: linear-gradient(180deg, var(--secondary-blue) 0%, var(--dark-teal) 100%);
+  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.55);
+}
+
+.card-layout {
+  display: inline-flex;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-styles {
+  border-radius: 4px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: var(--white);
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.referral-text {
+  color: var(--dark-teal);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--dark-teal);
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2px;
+}
+
+.header-bg {
+    font-size: 12px;
+  border-radius: 2px 2px 0 0;
+  border: 1px solid rgba(10, 126, 141, 0.4);
+  background: linear-gradient(180deg, var(--secondary-blue) 0%, var(--dark-teal) 100%);
+}
+
+
+

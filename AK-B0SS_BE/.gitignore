@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+# upload folder
+uploads/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment files
+.env
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+
+# Optional: compiled output or build folders
+dist/
+build/
+
+# Coverage reports
+coverage/
+
+# Optional: SQLite/MySQL dumps
+*.sql
+*.sqlite

@@ -1,0 +1,70 @@
+<div class="max-h-[1080px] flex items-center w-full">
+    <div class="bg-gradient-to-r from-white to-red-100 w-full">
+        <div class="flex md:flex-row min-h-[100vh] bg-white overflow-hidden">
+            <!-- Register Form Section -->
+            <div class="bg-color p-4 w-full flex justify-center items-center">
+                <div
+                class="bg-color z-[2] rounded-[10px] max-w-auto lg:min-w-[540px] mbackdrop-blur-[10px] md:px-[54px] p-[30px]">
+                <div class="w-full flex justify-center">
+                    <h1 (click)="goToHome()"
+                        class="md:text-[3rem] font-bold tracking-widest text-[var(--dark-teal)] cursor-pointer akboss-text">AKBOSS</h1>
+                </div>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="md:text-[40px] text-3xl font-bold">Login</h2>
+                        <img (click)="goBack()" src="assets/images/close.png" alt="Logo"
+                            class="w-[26px] h-[26px] cursor-pointer">
+                    </div>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-full">
+
+                        <label class="block text-black font-[500] mt-4">Enter your phone number</label>
+                        <div class="flex gap-x-2 mt-[14px]">
+                            <div class="border border-black rounded-lg px-2 min-w-[80px] flex items-center">
+                                <select formControlName="countryCode"
+                                    class="bg-transparent focus:outline-none h-[45px] w-full font-bold">
+                                    <option value="+91">+91</option>
+                                    <option value="+971">+971</option>
+                                    <option value="+92">+92</option>
+                                </select>
+                            </div>
+                            <div class="rounded-lg w-full">
+                                <input formControlName="phone" type="tel" maxlength="10"
+                                    (keypress)="allowOnlyNumbers($event)"  
+                                    pattern="[0-9]{10}" placeholder="Enter your number..."
+                                    class="md:h-[54px] h-[45px] border-black rounded-lg border px-2 focus:outline-none w-full" />
+                            </div>
+                        </div>
+
+                        <div class="relative mt-4">
+                            <label class="block text-black font-[500]">Password</label>
+                            <input [type]="password ? 'text' : 'password'" id="password-input" formControlName="pwd"
+                                placeholder="Enter your password"
+                                class="w-full border border-black rounded-lg p-2 md:h-[54px] h-[45px] mt-[14px] pr-10 focus:outline-none" />
+                            <!-- Eye Icon Button -->
+                            <button (click)="toggleVisibility()" type="button"
+                                class="absolute top-[44%] right-[18px] translate-y-[44%] text-[var(--primary-text-color)]">
+                                <i id="eye-icon" class="fa fa-eye-slash"></i>
+                            </button>
+                        </div>
+
+
+                        <div class="flex items-center mt-4 justify-between">
+                            <div class="text-[var(--gray-medium)]">Get OTP</div>
+                            <div [routerLink]="['/auth/forgot']" class="text-white cursor-pointer">Forgot Password?
+                            </div>
+                        </div>
+
+                        <button [disabled]="loginForm.invalid"
+                            class="w-full bg-red-500 cursor-pointer text-white py-2 mt-8 rounded-full">
+                            Login
+                        </button>
+
+                        <p class="text-center text-sm rounded-full py-2 mt-4">
+                            Don't have an account?
+                            <a [routerLink]="['/auth/register']" class="text-white font-bold">Sign up</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+

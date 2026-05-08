@@ -1,0 +1,8 @@
+{
+  "/backend": {
+    "target": "https://ak247pro.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -1,0 +1,185 @@
+<div class="min-h-screen bg-[#f7fcfd] flex flex-col font-['Inter',sans-serif]">
+  <!-- Navbar -->
+  <app-blog-header></app-blog-header>
+
+  <!-- Main Content Area -->
+  <div class="flex-1 w-full px-4 py-12 -mt-1">
+    <div class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col lg:flex-row border border-gray-100">
+
+      <!-- Left Side: Contact Info & Illustration -->
+      <div
+        class="lg:w-2/5 bg-gradient-to-br from-[var(--dark-teal)] to-[#0e7e8c] text-black p-10 flex flex-col justify-between relative overflow-hidden">
+        <!-- Decorative subtle pattern -->
+        <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 rounded-full bg-[#003f4a] opacity-30 blur-2xl">
+        </div>
+
+        <div class="relative z-10 text-center mb-10 border-b border-teal-600/30 pb-6 mt-4">
+          <h2
+            class="text-3xl font-extrabold my-2 inline-block px-8 py-3 rounded-xl bg-[#003f4a]/80 shadow-inner tracking-wide text-white">
+            Contact Information</h2>
+          <p class="text-teal-50 mt-4 leading-relaxed max-w-md mx-auto text-[15px]">
+            We'd love to hear from you. Reach out to us using the details below or simply fill out the contact form.
+          </p>
+        </div>
+
+        <div
+          class="flex flex-col xl:flex-row items-center xl:items-start justify-center gap-10 relative z-10 w-full mb-8">
+          <!-- Left side: Image -->
+          <div class="w-full xl:w-1/2 flex justify-center">
+            <div
+              class="bg-white/10 p-5 w-[220px] h-[220px] xl:w-[260px] xl:h-[260px] rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
+              <img src="assets/images/contact_illustration.png" alt="Contact Us Illustration"
+                class="w-full h-full object-contain drop-shadow-xl">
+            </div>
+          </div>
+
+          <!-- Right side: Details & Social -->
+          <div class="w-full xl:w-1/2 flex flex-col space-y-7">
+            <div class="flex items-start gap-4 group">
+              <div
+                class="w-12 h-12 rounded-full bg-teal-800/80 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-[#003f4a] transition-colors duration-300 shadow-md border border-white/10">
+                <i class="fas fa-map-marker-alt text-[20px] text-white group-hover:text-[#003f4a]"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[17px] tracking-wide text-white">Our Location</h4>
+                <p class="text-teal-100/90 text-[14px] mt-1.5 leading-snug">{{location}}
+                  02110</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 group">
+              <div
+                class="w-12 h-12 rounded-full bg-teal-800/80 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-[#003f4a] transition-colors duration-300 shadow-md border border-white/10">
+                <i class="fas fa-phone-alt text-[20px] text-white group-hover:text-[#003f4a]"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[17px] tracking-wide text-white">Phone Number</h4>
+                <p class="text-teal-100/90 text-[14px] mt-1.5 leading-snug">{{phone}}<br>Mon-Fri, 9am to 6pm Est
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 group">
+              <div
+                class="w-12 h-12 rounded-full bg-teal-800/80 flex items-center justify-center flex-shrink-0 group-hover:bg-white group-hover:text-[#003f4a] transition-colors duration-300 shadow-md border border-white/10">
+                <i class="fas fa-envelope text-[20px] text-white group-hover:text-[#003f4a]"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-[17px] tracking-wide text-white">Email Address</h4>
+                <p class="text-teal-100/90 text-[14px] mt-1.5 leading-snug">
+                  {{email}} </p>
+              </div>
+            </div>
+
+            <!-- Social Media Icons (below email) -->
+            <div class="flex gap-3 pt-3 ml-[64px]">
+              <a href="#"
+                class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-[var(--dark-teal)] hover:scale-110 transition-all duration-300 shadow-sm border border-white/5">
+                <i class="fab fa-facebook-f text-sm"></i>
+              </a>
+              <a href="#"
+                class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-[var(--dark-teal)] hover:scale-110 transition-all duration-300 shadow-sm border border-white/5">
+                <i class="fab fa-twitter text-sm"></i>
+              </a>
+              <a href="#"
+                class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-[var(--dark-teal)] hover:scale-110 transition-all duration-300 shadow-sm border border-white/5">
+                <i class="fab fa-instagram text-sm"></i>
+              </a>
+              <a href="#"
+                class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white text-white hover:text-[var(--dark-teal)] hover:scale-110 transition-all duration-300 shadow-sm border border-white/5">
+                <i class="fab fa-linkedin-in text-sm"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side: Contact Form -->
+      <div class="lg:w-3/5 p-8 md:p-12 bg-white">
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">Send us a Message</h3>
+        <p class="text-gray-500 mb-8 text-sm">Fill all the required fields and we'll reply as soon as possible.</p>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- First Name -->
+            <div class="space-y-2 relative group flex flex-col justify-end">
+              <label class="text-sm font-semibold text-gray-700">First Name <span class="text-red-500">*</span></label>
+              <div class="relative flex items-center h-[46px] w-full">
+                <i
+                  class="fas fa-user absolute left-4 text-gray-400 group-focus-within:text-[var(--dark-teal)] transition-colors z-10"></i>
+                <input type="text" formControlName="firstName" placeholder="John"
+                  class="w-full h-full pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--dark-teal)] focus:border-transparent transition-all shadow-sm m-0">
+              </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="space-y-2 relative group flex flex-col justify-end">
+              <label class="text-sm font-semibold text-gray-700">Last Name <span class="text-red-500">*</span></label>
+              <div class="relative flex items-center h-[46px] w-full">
+                <i
+                  class="fas fa-user absolute left-4 text-gray-400 group-focus-within:text-[var(--dark-teal)] transition-colors z-10"></i>
+                <input type="text" formControlName="lastName" placeholder="Doe"
+                  class="w-full h-full pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--dark-teal)] focus:border-transparent transition-all shadow-sm m-0">
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Email Address -->
+            <div class="space-y-2 relative group flex flex-col justify-end">
+              <label class="text-sm font-semibold text-gray-700">Email Address <span
+                  class="text-red-500">*</span></label>
+              <div class="relative flex items-center h-[46px] w-full">
+                <i
+                  class="fas fa-envelope absolute left-4 text-gray-400 group-focus-within:text-[var(--dark-teal)] transition-colors z-10"></i>
+                <input type="email" formControlName="emailId" placeholder="john@example.com"
+                  class="w-full h-full pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--dark-teal)] focus:border-transparent transition-all shadow-sm m-0">
+              </div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="space-y-2 relative group flex flex-col justify-end">
+              <label class="text-sm font-semibold text-gray-700">Mobile Number <span
+                  class="text-red-500">*</span></label>
+              <div class="relative flex items-center h-[46px] w-full">
+                <i
+                  class="fas fa-phone absolute left-4 text-gray-400 group-focus-within:text-[var(--dark-teal)] transition-colors z-10"></i>
+                <input type="tel" formControlName="mobileNumber" placeholder="+91 00000 00000"
+                  class="w-full h-full pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--dark-teal)] focus:border-transparent transition-all shadow-sm m-0">
+              </div>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="space-y-2 relative group flex flex-col">
+            <label class="text-sm font-semibold text-gray-700">Message <span class="text-red-500">*</span></label>
+            <div class="relative w-full">
+              <i
+                class="fas fa-comment-alt absolute left-4 top-4 text-gray-400 group-focus-within:text-[var(--dark-teal)] transition-colors z-10"></i>
+              <textarea formControlName="message" rows="4" placeholder="How can we help you?"
+                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--dark-teal)] focus:border-transparent transition-all shadow-sm m-0 resize-none"></textarea>
+            </div>
+          </div>
+
+
+
+          <!-- Submit Button -->
+          <div class="flex justify-center mt-6 pt-4">
+            <button type="submit" [disabled]="contactForm.invalid || isSubmitting"
+              class="w-full md:w-2/3 max-w-sm py-3.5 px-6 bg-gradient-to-r from-[#003f4a] to-[var(--dark-teal)] text-white rounded-lg font-bold text-[16px] tracking-wide hover:shadow-xl hover:-translate-y-1 hover:brightness-110 disabled:opacity-70 disabled:hover:translate-y-0 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-3">
+              <span *ngIf="!isSubmitting">Send Message</span>
+              <span *ngIf="isSubmitting">Sending...</span>
+              <i *ngIf="!isSubmitting" class="fas fa-paper-plane text-md"></i>
+              <i *ngIf="isSubmitting" class="fas fa-circle-notch fa-spin text-md"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+<app-blog-footer></app-blog-footer>
+</div>

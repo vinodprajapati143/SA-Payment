@@ -1,0 +1,340 @@
+<div class="admin-dashboard">
+    <div class="flex">
+        <app-admin-sidebar />
+        <div class="content">
+            <div class="head left">
+                All User
+            </div>
+            <div class="head md:hidden">
+                <div class="searchbar flex justify-between items-center">
+                    <input type="text" placeholder="search...">
+                    <div class="btn">
+                        <img src="/assets/images/dashboard/icons/search-white.svg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="head center">
+                <div class="searchbar flex justify-between md:flex hidden">
+                    <input type="text" placeholder="search...">
+                    <div class="btn">
+                        <img src="/assets/images/dashboard/icons/search-white.svg" alt="">
+                    </div>
+                </div>
+                Coming Soon
+            </div>
+            <div>
+                <!-- desktop -->
+                <div *ngFor="let game of comingSoonGames" class="game desktop">
+                    <div class="md:w-[130px] w-full">
+                        <div class="name relative">
+                            <span class="md:-rotate-[5deg]">{{ game.game_name }}</span>
+                            <img (click)="this.editGame(game.patte2)"
+                                class="md:hidden absolute top-[50%] right-2 w-[20px] -translate-y-[50%]"
+                                src="/assets/images/dashboard/icons/edit-white.svg" alt="">
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-row justify-between items-center gap-y-[20px] gap-x-2 px-4 md:py-0 py-2 ml-[20%]">
+                        <div class="flex flex-col gap-y-1 justify-center">
+                            <div class="time md:order-1 order-2">
+                                <div>
+                                    {{ formatTime(game.openCountdown).h }}
+                                </div>
+                                :
+                                <div>
+                                    {{ formatTime(game.openCountdown).m }}
+                                </div>
+                                :
+                                <div>
+                                    {{ formatTime(game.openCountdown).s }}
+                                </div>
+                            </div>
+                            <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Open</h5>
+                        </div>
+                        <div class="game-detail">
+                            <input type="text" class="box w-[100px] " [(ngModel)]="game.patte1"
+                                [disabled]="!game.openInputEnabled" maxlength="3" min="0" max="999"
+                                (input)="game.patte1 = restrictToThreeDigits(game.patte1)" placeholder="---" />
+
+                            <span></span>
+                            <div class="flex gap-x-2">
+                                <input type="text" class="box w-[50px]" [(ngModel)]="game.patte1_open"
+                                    [disabled]="!game.openInputEnabled" maxlength="1" min="0" max="9"
+                                    (input)="game.patte1_open = restrictToOneDigit(game.patte1_open)"
+                                    placeholder="---" />
+                                <input type="text" class="box w-[50px]" [(ngModel)]="game.patte2_close"
+                                    [disabled]="!game.closeInputEnabled" maxlength="1" min="0" max="9"
+                                    (input)="game.patte2_close = restrictToOneDigit(game.patte2_close)"
+                                    placeholder="---" />
+
+                            </div>
+                            <span></span>
+                            <input type="text" class="box w-[100px]" [(ngModel)]="game.patte2"
+                                [disabled]="!game.closeInputEnabled" maxlength="3" min="0" max="999"
+                                (input)="game.patte2 = restrictToThreeDigits(game.patte2)" placeholder="---" />
+
+
+
+                        </div>
+                        <div class="flex flex-col gap-y-1 justify-center">
+                            <div class="time md:order-1 order-2">
+                                <div>{{ formatTime(game.closeCountdown).h }}</div> :
+                                <div>{{ formatTime(game.closeCountdown).m }}</div> :
+                                <div>{{ formatTime(game.closeCountdown).s }}</div>
+                            </div>
+                            <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Closed</h5>
+                        </div>
+                        <button
+                            class="bg-[#0D5F5E] text-white border-1 border-[var(--white)] h-[40px] rounded-[4px] py-2 px-4"
+                            (click)="editGame(game)">
+                            <img src="/assets/images/dashboard/icons/edit-white.svg" class="h-[20px]" />
+                        </button>
+                        <button class="bg-[#0D5F5E] text-white border-1 border-[var(--white)] rounded-[4px] py-2 px-4"
+                            (click)="submitGame(game)">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <!-- mobile -->
+                <div *ngFor="let game of comingSoonGames" class="game mobile">
+                    <div class="md:w-[130px] w-full">
+                        <div class="name relative">
+                            <span class="md:-rotate-[5deg]">{{ game.game_name }}</span>
+                            <img (click)="this.editGame(game.patte2)"
+                                class="md:hidden absolute top-[50%] right-2 w-[20px] -translate-y-[50%]"
+                                src="/assets/images/dashboard/icons/edit-white.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center gap-y-[20px] gap-x-2 px-4 md:py-0 py-2">
+                        <div class="flex gap-x-2">
+                            <div class="flex flex-col gap-y-1 justify-center">
+                                <div class="time md:order-1 order-2">
+                                    <div>
+                                        {{ formatTime(game.openCountdown).h }}
+                                    </div>
+                                    :
+                                    <div>
+                                        {{ formatTime(game.openCountdown).m }}
+                                    </div>
+                                    :
+                                    <div>
+                                        {{ formatTime(game.openCountdown).s }}
+                                    </div>
+                                </div>
+                                <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Open</h5>
+                            </div>
+                            <div class="flex flex-col gap-y-1 justify-center">
+                                <div class="time md:order-1 order-2">
+                                    <div>{{ formatTime(game.closeCountdown).h }}</div> :
+                                    <div>{{ formatTime(game.closeCountdown).m }}</div> :
+                                    <div>{{ formatTime(game.closeCountdown).s }}</div>
+                                </div>
+                                <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Closed</h5>
+                            </div>
+                        </div>
+                        <div class="game-detail">
+                            <input type="text" class="box !w-[80px] " [(ngModel)]="game.patte1"
+                                [disabled]="!game.openInputEnabled" maxlength="3" min="0" max="999"
+                                (input)="game.patte1 = restrictToThreeDigits(game.patte1)" placeholder="---" />
+
+                            <span></span>
+                            <div class="flex gap-x-2">
+                                <input type="text" class="box w-[50px]" [(ngModel)]="game.patte1_open"
+                                    [disabled]="!game.openInputEnabled" maxlength="1" min="0" max="9"
+                                    (input)="game.patte1_open = restrictToOneDigit(game.patte1_open)"
+                                    placeholder="---" />
+                                <input type="text" class="box w-[50px]" [(ngModel)]="game.patte2_close"
+                                    [disabled]="!game.closeInputEnabled" maxlength="1" min="0" max="9"
+                                    (input)="game.patte2_close = restrictToOneDigit(game.patte2_close)"
+                                    placeholder="---" />
+
+                            </div>
+                            <span></span>
+                            <input type="text" class="box !w-[80px]" [(ngModel)]="game.patte2"
+                                [disabled]="!game.closeInputEnabled" maxlength="3" min="0" max="999"
+                                (input)="game.patte2 = restrictToThreeDigits(game.patte2)" placeholder="---" />
+
+
+
+                        </div>
+                        <button class="bg-[#0D5F5E] text-white border-1 border-[var(--white)] rounded-[4px] py-2 px-4"
+                            (click)="submitGame(game)">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="head center">
+
+                <h4>All Game result</h4>
+            </div>
+            <div>
+                <!-- desktop -->
+                <div *ngFor="let game of allGames" class="game md:flex hidden relative bg-[var(--border-teal)] type-2">
+                    <div class="name-2">
+                        <div class="relative">
+                            <span>{{ game.game_name }}</span>
+                            <img (click)="editGame(game)"
+                                class="md:hidden absolute top-[50%] right-2 w-[20px] -translate-y-[50%]"
+                                src="/assets/images/dashboard/icons/edit-white.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="flex w-full">
+                        <div *ngIf="isHoliday(game)" class="right flex !items-center !justify-center w-full">
+                            <h3 class="text-dark font-bold text-lg blink-text flex ">Today is Holiday</h3>
+                        </div>
+                        <div class="right md:gap-x-3" *ngIf="!isHoliday(game)">
+                            <div class="flex flex-col">
+                                <div class="time md:order-1 order-2">
+                                    <div>
+                                        {{ formatTime(game.openCountdown).h }}
+                                    </div>
+                                    :
+                                    <div>
+                                        {{ formatTime(game.openCountdown).m }}
+                                    </div>
+                                    :
+                                    <div>
+                                        {{ formatTime(game.openCountdown).s }}
+                                    </div>
+                                </div>
+                                <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Open</h5>
+                            </div>
+                            <div class="game-detail">
+                                <input type="number" id="patte1" class="box w-[100px] " [(ngModel)]="game.patte1"
+                                    [readonly]="!game.openInputEnabled">
+
+                                <span></span>
+                                <div class="flex gap-x-2">
+                                    <input type="number" id="patte1_open" class="box w-[50px]"
+                                        [(ngModel)]="game.patte1_open" [readonly]="!game.openInputEnabled">
+                                    <input type="number" id="patte2_close" class="box w-[50px]"
+                                        [(ngModel)]="game.patte2_close" [readonly]="!game.closeInputEnabled">
+
+                                </div>
+                                <span></span>
+                                <input type="number" id="patte2" class="box w-[100px]" [(ngModel)]="game.patte2"
+                                    [readonly]="!game.closeInputEnabled">
+
+
+                            </div>
+
+                            <div class="flex flex-col">
+                                <div class="time md:order-1 order-2">
+
+                                    <div>
+                                        {{ formatTime(game.closeCountdown).h }}
+                                    </div>
+                                    :
+                                    <div>
+                                        {{ formatTime(game.closeCountdown).m }}
+                                    </div>
+                                    :
+                                    <div>
+                                        {{ formatTime(game.closeCountdown).s }}
+                                    </div>
+                                </div>
+                                <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Closed</h5>
+                            </div>
+
+                            <button
+                                class="bg-[#0D5F5E] text-white border-1 border-[var(--white)] rounded-[4px] py-2 px-4 md:block hidden"
+                                (click)="editGame(game)">
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- mobile -->
+                <div *ngFor="let game of allGames" class="game md:hidden flex relative bg-[var(--border-teal)] type-2">
+                    <div class="name-2">
+                        <div class="relative">
+                            <span>{{ game.game_name }}</span>
+                            <img (click)="this.editGame(game.patte2)"
+                                class="md:hidden absolute top-[50%] right-2 w-[20px] -translate-y-[50%]"
+                                src="/assets/images/dashboard/icons/edit-white.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="flex w-full">
+                        <div *ngIf="isHoliday(game)" class="right flex !items-center !justify-center w-full">
+                            <h3 class="text-dark font-bold text-lg blink-text flex ">Today is Holiday</h3>
+                        </div>
+                        <div class="right md:gap-x-3" *ngIf="!isHoliday(game)">
+                            <div class="flex gap-x-2">
+                                <div class="flex flex-col">
+                                    <div class="time md:order-1 order-2">
+
+                                        <div>
+                                            {{ formatTime(game.closeCountdown).h }}
+                                        </div>
+                                        :
+                                        <div>
+                                            {{ formatTime(game.closeCountdown).m }}
+                                        </div>
+                                        :
+                                        <div>
+                                            {{ formatTime(game.closeCountdown).s }}
+                                        </div>
+                                    </div>
+                                    <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Closed
+                                    </h5>
+                                </div>
+                                <div class="flex flex-col">
+                                    <div class="time md:order-1 order-2">
+                                        <div>
+                                            {{ formatTime(game.openCountdown).h }}
+                                        </div>
+                                        :
+                                        <div>
+                                            {{ formatTime(game.openCountdown).m }}
+                                        </div>
+                                        :
+                                        <div>
+                                            {{ formatTime(game.openCountdown).s }}
+                                        </div>
+                                    </div>
+                                    <h5 class="text-center font-bold text-[var(--border-teal)] mt-[4px] md:order-2 order-1">Open
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div class="game-detail">
+                                <input type="number" maxlength="3" min="0" max="999" id="patte1" class="box !w-[80px] " [(ngModel)]="game.patte1"
+                                    [readonly]="!game.openInputEnabled">
+
+                                <span></span>
+                                <div class="flex gap-x-2">
+                                    <input type="number" maxlength="1" min="0" max="9" id="patte1_open" class="box w-[50px] text-center flex"
+                                        [(ngModel)]="game.patte1_open" [readonly]="!game.openInputEnabled">
+                                    <input type="number" maxlength="1" min="0" max="9" id="patte2_close" class="box w-[50px] text-center flex"
+                                        [(ngModel)]="game.patte2_close" [readonly]="!game.closeInputEnabled">
+
+                                </div>
+                                <span></span>
+                                <input type="number" maxlength="3" min="0" max="999" id="patte2" class="box !w-[80px]" [(ngModel)]="game.patte2"
+                                    [readonly]="!game.closeInputEnabled">
+
+
+                            </div>
+
+
+
+                            <button
+                                class="bg-[#0D5F5E] text-white border-1 border-[var(--white)] rounded-[4px] py-2 px-4 md:block hidden"
+                                (click)="editGame(game)">
+                                Edit
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer></footer>
+
+

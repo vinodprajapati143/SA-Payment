@@ -1,0 +1,149 @@
+<app-header></app-header>
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="min-h-[100vh] mt-12 bg-gray-50 mb-16 px-4 py-6" [class.blur-bg]="isLoading">
+  <!-- Header -->
+  
+  <div class="w-full btn-bg-color from-pink-600 to-pink-500 text-white rounded-xl shadow-lg p-4 flex justify-between items-center">
+    <h2 class="text-xl font-bold">Withdrawal</h2>
+    <button (click)="navigateToAddAmount()" class="bg-white text-black text-sm font-semibold px-4 py-1 rounded-full shadow hover:bg-gray-100">
+      Add Amount
+    </button>
+  </div>
+
+  <!-- User Card -->
+  <div class="bg-white shadow rounded-lg mx-2 mt-4 overflow-hidden">
+    <div class="bg-black text-white text-center p-3">
+      <p class="font-semibold">{{userdata?.username}}</p>
+      <p class="text-sm">{{userdata?.countryCode}}{{userdata?.phone}}</p>
+    </div>
+    <div class="flex items-center gap-3 p-4">
+      <img src="/assets/images/amount-wallet.svg" alt="wallet" class="w-10 h-10" />
+      <div>
+        <p class="text-gray-800 font-semibold">₹ {{walletblance}}</p>
+        <p class="text-gray-500 text-sm">Current Balance</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Section -->
+  <div class="bg-white shadow rounded-lg mx-2 mt-4 p-4">
+    <p class="text-gray-600">Call or Whatsapp for Withdraw Related Queries</p>
+    <div class="flex items-center gap-3 mt-2" (click)="openWhatsApp()">
+      <img src="/assets/images/whatsapp.png" alt="whatsapp" class="w-6 h-6" />
+      <div>
+        <p class="text-green-600 font-semibold">+91 9575259525</p>
+        <p class="text-gray-500 text-sm">10:00 AM – 6:00 PM</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Withdraw Form -->
+  <div class="mx-4 mt-5 gap-y-2">
+    <!-- Amount Input -->
+    <input
+      type="number"
+      placeholder="Enter Amount (Minimum Withdraw 100)"
+      [(ngModel)]="withdraw.amount"
+      name="amount"
+      class="w-full rounded-full border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2"
+    />
+
+    <!-- Mode Selection -->
+    <select
+      [(ngModel)]="withdraw.mode"
+      name="mode"
+      (change)="onModeChange($event)"
+      class="w-full rounded-full border border-gray-300 px-4 py-3 mt-4 mb-[5px] focus:outline-none focus:ring-2"
+    >
+      <option value="">Select your mode</option>
+      <option value="upi">UPI</option>
+      <option value="bank">Bank Transfer</option>
+      <!-- <option value="wallet">Wallet</option> -->
+    </select>
+
+    <!-- Phone -->
+    <label for="phone" class="pl-[20px]">Phone Number</label>
+    <input
+      type="tel"
+      placeholder="Enter Phone Number"
+      [(ngModel)]="withdraw.phone"
+      name="phone"
+      [disabled]="inputsDisabled"
+      class="w-full rounded-full border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2"
+    />
+
+    <!-- 👇 Conditional Fields for UPI -->
+    <div *ngIf="withdraw.mode === 'upi'" class="space-y-1">
+      <label for="upiName" class="pl-[20px]">Account Holder Name</label>
+      <input
+        type="text"
+        placeholder="Enter Account Holder Name"
+        [(ngModel)]="withdraw.name"
+        name="upiName"
+        [disabled]="inputsDisabled"
+        class="w-full rounded-full border border-gray-300 px-4 py-3 mb-[5px] focus:outline-none focus:ring-2"
+      />
+      <label for="upiId" class="pl-[20px]">UPI ID</label>
+      <input
+        type="text"
+        placeholder="Enter UPI ID (e.g. username@upi)"
+        [(ngModel)]="withdraw.upiId"
+        [disabled]="inputsDisabled"
+        name="upiId"
+        class="w-full rounded-full border border-gray-300 px-4 py-3 mb-[5px] focus:outline-none focus:ring-2"
+      />
+    </div>
+
+    <!-- 👇 Conditional Fields for Bank -->
+    <div *ngIf="withdraw.mode === 'bank'" class="gap-y-2">
+      <label for="bankName" class="pl-[20px]">Account Holder Name</label>
+      <input
+        type="text"
+        placeholder="Enter Account Holder Name"
+        [(ngModel)]="withdraw.name"
+        [disabled]="inputsDisabled"
+        name="bankName"
+        class="w-full rounded-full border border-gray-300 px-4 py-3 mb-[5px] focus:outline-none focus:ring-2"
+      />
+      <label for="bankName" class="pl-[20px]">Bank Name</label>
+      <input
+        type="text"
+        placeholder="Enter Account Holder Name"
+        [(ngModel)]="withdraw.bank_name"
+        [disabled]="inputsDisabled"
+        name="bankName"
+        class="w-full rounded-full border border-gray-300 px-4 py-3 mb-[5px] focus:outline-none focus:ring-2"
+      />
+      <label for="accountNumber" class="pl-[20px]">Account Number</label>
+      <input
+        type="text"
+        placeholder="Enter Account Number"
+        [(ngModel)]="withdraw.accountNumber"
+        [disabled]="inputsDisabled"
+        name="accountNumber"
+        class="w-full rounded-full border border-gray-300 px-4 py-3 mb-[5px] focus:outline-none focus:ring-2"
+      />
+      <label for="ifsc" class="pl-[20px]">IFSC Code</label>
+      <input
+        type="text"
+        placeholder="Enter IFSC Code"
+        [(ngModel)]="withdraw.ifsc"
+        [disabled]="inputsDisabled"
+        name="ifsc"
+        class="w-full rounded-full border border-gray-300 px-4 py-3 mb-[5px] focus:outline-none focus:ring-2"
+      />
+    </div>
+
+    <!-- Withdraw Button -->
+    <button
+      (click)="submitWithdrawal()"
+      class="w-full bg-green-600 text-white rounded-full py-3 mt-2 hover:bg-green-700 transition"
+    >
+      Withdraw Now
+    </button>
+  </div>
+
+</div>
+<app-footer></app-footer>
+
+

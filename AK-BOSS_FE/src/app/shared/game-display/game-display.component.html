@@ -1,0 +1,72 @@
+  <!-- Top Section -->
+  <div
+    class="bg-white text-center py-4 mt-2 border-y flex items-center justify-center flex-col border-y-solid border-y-black shadow">
+    <h2 class="text-teal-700 text-2xl font-bold">{{ gameName }}</h2>
+
+    <!-- Stars display -->
+    <div class="text-teal-700 font-bold mb-1">
+      <ng-container *ngFor="let star of stars; let i = index">
+        <span>{{ star }}</span>
+        <ng-container *ngIf="i < stars.length - 1"> </ng-container>
+      </ng-container>
+    </div>
+
+    <!-- Timer boxes -->
+<!-- Timer boxes -->
+<div
+  class="flex items-center justify-center space-x-3 py-1 px-4 rounded-md border border-orange-400"
+  style="background: linear-gradient(90deg, #6EC1E4, #FBB040);"
+>
+  <!-- Agar open ka time khatam nahi hua -->
+  <ng-container *ngIf="!(openHH === '00' && openMM === '00' && opensSS === '00'); else afterOpenTime">
+    <div class="flex items-center space-x-1">
+      <div class="bg-white text-sm font-bold px-1 rounded-md border-2 text-color">{{ openHH }}</div>
+      <span class="text-white text-sm font-bold">:</span>
+      <div class="bg-white text-sm font-bold px-1 rounded-md border-2 text-color">{{ openMM }}</div>
+      <span class="text-white text-sm font-bold">:</span>
+      <div class="bg-white text-sm font-bold px-1 rounded-md border-2 text-color">{{ opensSS }}</div>
+    </div>
+  </ng-container>
+
+  <!-- Agar open ka time 00 ho gaya -->
+  <ng-template #afterOpenTime>
+    <!-- Agar patte1 ya patte1_open empty h, toh tab tak "अंक आ रहा है" -->
+    <ng-container *ngIf="!patte1 || !patte1_open; else checkCloseTimer">
+      <span class="text-dark text-sm font-bold blink-text">अंक आ रहा है</span>
+    </ng-container>
+  </ng-template>
+
+  <!-- Agar open ke baad close timer chal raha hai -->
+  <ng-template #checkCloseTimer>
+    <ng-container *ngIf="!(closeHH === '00' && closeMM === '00' && closesSS === '00'); else afterCloseTime">
+      <div class="flex items-center space-x-1">
+        <div class="bg-white text-sm font-bold px-1 rounded-md border-2 text-color">{{ closeHH }}</div>
+        <span class="text-white text-sm font-bold">:</span>
+        <div class="bg-white text-sm font-bold px-1 rounded-md border-2 text-color">{{ closeMM }}</div>
+        <span class="text-white text-sm font-bold">:</span>
+        <div class="bg-white text-sm font-bold px-1 rounded-md border-2 text-color">{{ closesSS }}</div>
+      </div>
+    </ng-container>
+  </ng-template>
+
+  <!-- Agar close bhi 00 ho gaya -->
+  <ng-template #afterCloseTime>
+    <!-- Agar patte2 ya patte2_close empty h, toh tab tak "अंक आ रहा है" -->
+    <ng-container *ngIf="!patte2 || !patte2_close; else finalResult">
+      <span class="text-dark text-sm font-bold blink-text">अंक आ रहा है</span>
+    </ng-container>
+  </ng-template>
+
+  <!-- Final result ke liye jagah (agar future me dikhana ho) -->
+  <ng-template #finalResult>
+    <!-- <span class="text-white text-sm font-bold">✔ Result आ गया</span> -->
+  </ng-template>
+</div>
+
+
+
+
+  </div>
+
+
+

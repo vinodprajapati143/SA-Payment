@@ -1,0 +1,215 @@
+<div class="blog-page">
+    <!-- Navbar -->
+   <app-blog-header></app-blog-header>
+
+    <!-- Hero Section -->
+    <section class="text-center pt-12 px-4 mt-[30px]">
+        <h1 class="text-3xl font-bold">INSIGHTS AND INSPIRATION</h1>
+        <h1 class="text-3xl font-bold uppercase mt-2">Explore our blog</h1>
+        <p class="text-gray-500 mt-2">Dive into our blog for expert insights, tips, and industry trends to elevate your
+            <br> project management journey.
+        </p>
+
+        <div class="mt-6 flex justify-center">
+            <input class="border px-4 py-2 w-96 rounded-l" placeholder="Search articles">
+            <button class="bg-teal-600 text-white px-4 rounded-r">🔍</button>
+        </div>
+
+        <div class="mt-6 flex justify-center">
+            <div class="filter-wrapper">
+                <button *ngFor="let tab of tabs" (click)="setTab(tab)"
+                    [ngClass]="activeTab === tab ? 'tab-active' : 'tab'">
+                    {{ tab }}
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="content-wrapper">
+        <!-- Featured Blogs -->
+        <section class="section">
+            <div class="blog-grid-3">
+               <ng-container *ngFor="let blog of blogs">
+
+                   <div class="blog-card"  (click)="navigateToBlogDetails(blog.id)">
+                       <div class="card-img">
+                           <img [src]="blog.image" [alt]="blog.title">
+                           <span class="category-tag">Category</span>
+                       </div>
+                       <div class="card-body">
+                           <h3>{{ blog.title }}</h3>
+                           <p>{{ blog.subDescription }}</p>
+                       </div>
+                       <div class="card-footer">
+                           <div class="author">
+                               <img src="https://i.pravatar.cc/150?u=joel" alt="Avatar">
+                               <span>Admin</span>
+                           </div>
+                           <span class="read-time">{{ blog.created_at | date:'short' }}</span>
+                       </div>
+                   </div>
+               </ng-container>
+
+             
+            </div>
+        </section>
+
+        <!-- Top Blogs Section -->
+        <section class="top-blogs-section">
+            <h2 class="section-title">DIVE INTO OUR TOP BLOGS</h2>
+
+            <div class="top-blogs-container">
+                <!-- Left: Large Featured Card -->
+                <div class="featured-card">
+                    <div class="card-content">
+                        <h3 class="card-title">Creating Effective Project Roadmaps for Success</h3>
+                        <p class="card-desc">Learn how to develop comprehensive project roadmaps that provide clear
+                            direction,
+                            outline key milestones, and enhance team alignment...</p>
+
+                        <div class="card-image-wrapper">
+                            <img src="https://picsum.photos/seed/main/600/400" alt="Blog Image">
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="author">
+                                <img src="https://i.pravatar.cc/150?u=joel" alt="Joel Kennedy">
+                                <span class="name">Joel Kennedy</span>
+                            </div>
+                            <span class="read-time">4 Min Read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: List of Cards -->
+                <div class="side-cards-list">
+                    <!-- Small Card 1 -->
+                    <div class="side-card">
+                        <div class="side-card-img">
+                            <img src="https://picsum.photos/seed/side1/200/150" alt="Side Blog">
+                        </div>
+                        <div class="side-card-body">
+                            <div class="card-meta">
+                                <span class="badge">Collaboration</span>
+                                <span class="time">14 Min Read</span>
+                            </div>
+                            <h4 class="side-card-title">Managing Stakeholder Expectations for Project Success</h4>
+                        </div>
+                        <button class="arrow-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Small Card 2 -->
+                    <div class="side-card">
+                        <div class="side-card-img">
+                            <img src="https://picsum.photos/seed/side2/200/150" alt="Side Blog">
+                        </div>
+                        <div class="side-card-body">
+                            <div class="card-meta">
+                                <span class="badge">Collaboration</span>
+                                <span class="time">14 Min Read</span>
+                            </div>
+                            <h4 class="side-card-title">Managing Stakeholder Expectations for Project Success</h4>
+                        </div>
+                        <button class="arrow-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Bottom Horizontal Card -->
+                    <div class="side-card horizontal last-card">
+                        <div class="side-card-img">
+                            <img src="https://picsum.photos/seed/bottom/600/200" alt="Bottom Blog">
+                        </div>
+                        <div class="side-card-body">
+                            <div class="card-meta">
+                                <span class="badge">Collaboration</span>
+                                <span class="time">14 Min Read</span>
+                            </div>
+                            <h4 class="side-card-title">Managing Stakeholder Expectations.</h4>
+                            <p class="side-card-desc">Learn how to develop comprehensive project.</p>
+                        </div>
+                        <button class="arrow-btn">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Insights Section -->
+        <section class="insights-section">
+            <h2 class="section-title">EXPLORE OUR LATEST INSIGHTS</h2>
+
+            <div class="insights-grid">
+                <!-- Row 1, Card 1 -->
+                <div class="insight-card light" *ngFor="let item of blogs">
+                    <div class="card-img-wrapper">
+                        <img [src]="item.image" [alt]="item.title">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{item.title}}</h3>
+                        <p class="card-desc">{{item.subDescription}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="author">
+                            <img src="https://i.pravatar.cc/150?u=joel" alt="Joel Kennedy">
+                            <span class="author-name">Admin</span>
+                        </div>
+                        <span class="read-time">{{item.created_at | date:'short'}}</span>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section team-section">
+            <h2 class="section-title">MEET THE MINDS BEHIND THE INSIGHTS</h2>
+            <p class="section-subtitle">Discover the talented individuals behind our insightful blogs, sharing expertise
+                and knowledge in project management.</p>
+
+            <div class="team-grid">
+                <div class="team-card" *ngFor="let member of teamMembers; let i = index" [ngClass]="getTeamClass(i)">
+                    <div class="team-header">
+                        <img [src]="member.image" [alt]="member.name">
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-body">
+                        <h4 class="name">{{ member.name }}</h4>
+                        <span class="role">{{ member.role }}</span>
+                        <p class="bio">{{ member.desc }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+
+    <!-- <footer class="bg-teal-900 text-white text-center py-4 mt-10">
+        Powered by AKboss.boston
+    </footer> -->
+
+    <app-blog-footer></app-blog-footer>
+</div>
