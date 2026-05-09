@@ -1,6 +1,6 @@
 {
   "/backend": {
-    "target": "https://ak247pro.com",
+    "target": "https://sapayment.in",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

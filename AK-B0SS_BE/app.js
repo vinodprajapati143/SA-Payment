@@ -16,7 +16,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:4200',
-  'https://ak247pro.com'
+  'https://sapayment.in'
 ];
 
 app.use(cors({

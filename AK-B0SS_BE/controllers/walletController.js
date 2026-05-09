@@ -30,7 +30,7 @@ exports.createAddMoneyOrder = async (req, res) => {
 
     // 1. Create unique client_txn_id each request
     const client_txn_id = Date.now() + '_' + user.id + '_' + Math.round(Math.random() * 10000);
-    const redirectUrl = "https://ak247pro.com/user/add-amount";
+    const redirectUrl = "https://sapayment.in/user/add-amount";
     // 2. Prepare API request payload
     const payload = {
       key: process.env.EKQR_API_KEY,
