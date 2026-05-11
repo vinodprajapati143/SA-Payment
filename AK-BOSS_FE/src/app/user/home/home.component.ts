@@ -158,10 +158,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscriptions: { [gameId: number]: Subscription } = {};
 
   ngOnInit(): void {
-    this.loadpubligames();
+    // this.loadpubligames();
     this.settingStore.getSite().subscribe(res => {
       if (res) {
-        console.log('res: ', res);
         this.sitename = res.name || 'AK-BOSS';
         this.copyright = res.copyright || '';
        this.apiLink = res.apiLink || '';
@@ -192,34 +191,34 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 loadpubligames() {
     this.isLoading = true; // start loader
-    this.subscription = this.gameService.getpublicGames().subscribe({
-      next: (res) => {
-        const apiGames = res.data.comingSoonGames;
+    // this.subscription = this.gameService.getpublicGames().subscribe({
+    //   next: (res) => {
+    //     const apiGames = res.data.comingSoonGames;
 
-        apiGames.forEach((game: any) => {
-          game.openCountdown = this.getRemainingTime(
-            game.open_time,
-            game.is_next_day_close,
-            'open'
-          );
-          game.closeCountdown = this.getRemainingTime(
-            game.close_time,
-            game.is_next_day_close,
-            'close'
-          );
-        });
+    //     apiGames.forEach((game: any) => {
+    //       game.openCountdown = this.getRemainingTime(
+    //         game.open_time,
+    //         game.is_next_day_close,
+    //         'open'
+    //       );
+    //       game.closeCountdown = this.getRemainingTime(
+    //         game.close_time,
+    //         game.is_next_day_close,
+    //         'close'
+    //       );
+    //     });
 
-        this.games = apiGames;
-        this.gamesResult = res.data.allGames;
-        this.startCountdown();
+    //     this.games = apiGames;
+    //     this.gamesResult = res.data.allGames;
+    //     this.startCountdown();
 
-        this.isLoading = false; // ✅ stop loader after success
-      },
-      error: (err) => {
-        console.error('Failed to fetch games', err);
-        this.isLoading = false; // stop loader on error
-      },
-    });
+    //     this.isLoading = false; // ✅ stop loader after success
+    //   },
+    //   error: (err) => {
+    //     console.error('Failed to fetch games', err);
+    //     this.isLoading = false; // stop loader on error
+    //   },
+    // });
   }
 
   startCountdown() {
@@ -292,13 +291,13 @@ loadpubligames() {
   }
 
   loadpubligamesResult() {
-    this.gameService.getpublicGamesResult().subscribe({
-      next: (res) => {
-        this.gamesResult = res.games;
-      },
-      error: (err) => {
-        console.error('Failed to fetch games', err);
-      },
-    });
+    // this.gameService.getpublicGamesResult().subscribe({
+    //   next: (res) => {
+    //     this.gamesResult = res.games;
+    //   },
+    //   error: (err) => {
+    //     console.error('Failed to fetch games', err);
+    //   },
+    // });
   }
 }
