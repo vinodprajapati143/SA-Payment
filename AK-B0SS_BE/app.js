@@ -16,7 +16,8 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:4200',
-  'https://sapayment.in'
+  'https://sapayment.in',
+  'https://www.sapayment.in'
 ];
 
 app.use(cors({
