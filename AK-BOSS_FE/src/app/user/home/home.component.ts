@@ -9,6 +9,8 @@ import { ApiService } from '../../core/services/api.service';
 import { interval, map, startWith, Subscription, timer } from 'rxjs';
 import { LoaderComponent } from "../../shared/loader/loader.component";
 import { SettingService } from '../../core/services/setting.service';
+import { FooterComponent } from '../footer/footer.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -21,7 +23,8 @@ import { SettingService } from '../../core/services/setting.service';
     MarqureeComponent,
     FloatingButtonsComponent,
     GameDisplayComponent,
-    LoaderComponent
+    LoaderComponent,
+    FooterComponent
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -155,7 +158,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   countdowns: {
     [gameId: number]: { hours: string; minutes: string; seconds: string };
   } = {};
-  subscriptions: { [gameId: number]: Subscription } = {};
+  activeSolutionTab: number = 0;
+  activeStandoutTab: string = 'innovation';
+  activeFaqIndex: number | null = null;
+
+  toggleFaq(index: number) {
+    this.activeFaqIndex = this.activeFaqIndex === index ? null : index;
+  }
 
   ngOnInit(): void {
     // this.loadpubligames();

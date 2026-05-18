@@ -5,12 +5,13 @@ import Swal from 'sweetalert2';
 import { ApiService } from '../../core/services/api.service';
 import { SettingService } from '../../core/services/setting.service';
 import { BlogFooterComponent } from '../../shared/blog-footer/blog-footer.component';
-import { BlogHeaderComponent } from '../../shared/blog-header/blog-header.component';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, BlogHeaderComponent, BlogFooterComponent],
+  imports: [CommonModule, ReactiveFormsModule, HeaderComponent, FooterComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
@@ -25,7 +26,7 @@ export class ContactComponent implements OnInit {
   apiLink: any;
   name: any;
   copyright: any;
-  
+
   constructor(private fb: FormBuilder, private apiService: ApiService) {
     // Create the reactive form with requested fields
     this.contactForm = this.fb.group({
@@ -42,24 +43,24 @@ export class ContactComponent implements OnInit {
   }
 
   getContactInfo() {
-      // this.settingStore.loadSettings();
+    // this.settingStore.loadSettings();
 
-  this.settingStore.getSite().subscribe(res => {
-    if (res) {
-       this.location = res.address || '';
-       this.phone = res.phone || '';
-       this.email = res.email || '';
-       this.apiLink = res.apiLink || '';
-       this.name = res.name || '';
-       this.copyright = res.copyright || '';
-    }
-  });
+    this.settingStore.getSite().subscribe(res => {
+      if (res) {
+        this.location = res.address || '';
+        this.phone = res.phone || '';
+        this.email = res.email || '';
+        this.apiLink = res.apiLink || '';
+        this.name = res.name || '';
+        this.copyright = res.copyright || '';
+      }
+    });
   }
 
   onSubmit() {
     if (this.contactForm.valid) {
       this.isSubmitting = true;
-      
+
       this.apiService.submitContactForm(this.contactForm.value).subscribe({
         next: (res) => {
           this.isSubmitting = false;

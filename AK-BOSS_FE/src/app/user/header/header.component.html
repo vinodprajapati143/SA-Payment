@@ -1,22 +1,55 @@
- <div class="flex justify-between bg-blue-50 items-center fixed top-0 w-full z-50 pl-3">
-    <!-- Left -->
-    <div class="flex items-center gap-2">
-      <button class="relative">
-        <img src="/assets/images/bell.png" alt="bell" class="w-5 h-5">
-        <span class="absolute -top-1 -right-1 bg-red-500 text-xs text-white rounded-full px-1">5</span>
-      </button>
-    </div>
-    <span (click)="openDashboard()" class="logo"><img [src]="siteLogo" alt="logo"></span>
-
-    <!-- Right -->
-    <div class="flex items-center gap-2 bg-teal-500 header">
-      <button (click)="openWallet()" class="profile-header">
-        ₹{{userWalletBalance}}
-      </button>
-      <div>
-        <img (click)="openProfile()" src="/assets/images/user-profile.svg" alt="profile" class="w-7 h-7 rounded-full bg-white">
-      </div>
-    </div>
+<div
+  class="flex justify-between bg-white border-b border-gray-100 items-center fixed top-0 w-full h-16 z-50 px-4 md:px-8 shadow-sm">
+  <!-- Left Side Logo -->
+  <div class="flex items-center">
+    <span (click)="openDashboard()" class="cursor-pointer flex items-center gap-2">
+      <img *ngIf="siteLogo" [src]="siteLogo" alt="logo" class="h-8 max-w-[150px] object-contain">
+      <span *ngIf="!siteLogo" class="text-xl font-extrabold text-[#0e263e] tracking-tight">QUINTUSPAY</span>
+    </span>
   </div>
 
+  <!-- Center Desktop Navigation Links -->
+  <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-gray-600">
+    <a routerLink="/" routerLinkActive="text-[#0d6efd] font-bold" [routerLinkActiveOptions]="{exact: true}"
+      class="hover:text-[#0d6efd] transition-colors">Home</a>
+    <a routerLink="/user/about-us" routerLinkActive="text-[#0d6efd] font-bold"
+      class="hover:text-[#0d6efd] transition-colors">About</a>
+    <!-- <a href="#merchant-payment" class="hover:text-[#0d6efd] transition-colors">Solutions</a>
+    <a href="#upiflow" class="hover:text-[#0d6efd] transition-colors">UPIFlow</a> -->
+    <a routerLink="/user/blogs" routerLinkActive="text-[#0d6efd] font-bold"
+      class="hover:text-[#0d6efd] transition-colors">Blog</a>
+    <a routerLink="/user/contact" routerLinkActive="text-[#0d6efd] font-bold"
+      class="hover:text-[#0d6efd] transition-colors">Contact</a>
+  </nav>
 
+  <!-- Right Side Actions & Dynamic Buttons -->
+  <div class="flex items-center gap-3">
+    <!-- Notification Bell -->
+    <button class="relative p-2 text-gray-500 hover:text-[#0e263e] hover:bg-gray-100 rounded-full transition-all">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+      </svg>
+      <span
+        class="absolute top-1 right-1 bg-[#EB2222] text-[10px] font-bold text-white rounded-full h-4 w-4 flex items-center justify-center">5</span>
+    </button>
+
+    <!-- Dynamic Wallet Chip -->
+    <button (click)="openWallet()"
+      class="flex items-center gap-1.5 px-3 py-1.5 bg-[#0e263e]/10 text-[#0e263e] hover:bg-[#0e263e]/20 font-bold rounded-full text-sm transition-all border border-[#0e263e]/10">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+        class="w-4 h-4">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+      </svg>
+      ₹{{userWalletBalance || 0}}
+    </button>
+
+    <!-- User Profile Button -->
+    <button (click)="openProfile()"
+      class="flex items-center justify-center h-9 w-9 rounded-full border border-gray-200 hover:border-[#0e263e]/50 overflow-hidden transition-all bg-gray-50">
+      <img src="/assets/images/user-profile.svg" alt="profile" class="w-full h-full object-cover">
+    </button>
+  </div>
+</div>

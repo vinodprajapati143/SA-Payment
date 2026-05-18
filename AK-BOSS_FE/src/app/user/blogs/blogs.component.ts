@@ -5,11 +5,14 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BlogHeaderComponent } from "../../shared/blog-header/blog-header.component";
 import { BlogFooterComponent } from "../../shared/blog-footer/blog-footer.component";
+import { AboutUsComponent } from "../about-us/about-us.component";
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-blogs',
   standalone: true,
-  imports: [CommonModule, BlogHeaderComponent, BlogFooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, AboutUsComponent],
   templateUrl: './blogs.component.html',
   styleUrl: './blogs.component.scss'
 })

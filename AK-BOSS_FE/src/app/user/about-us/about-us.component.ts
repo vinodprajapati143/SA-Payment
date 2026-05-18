@@ -1,12 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { SettingService } from '../../core/services/setting.service';
-import { BlogHeaderComponent } from "../../shared/blog-header/blog-header.component";
-import { BlogFooterComponent } from '../../shared/blog-footer/blog-footer.component';
+import { HeaderComponent } from '../../shared/header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [BlogHeaderComponent, BlogFooterComponent],
+  imports: [HeaderComponent, FooterComponent],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.scss'
 })
@@ -16,11 +16,12 @@ export class AboutUsComponent implements OnInit {
   copyright: any;
 
   ngOnInit(): void {
-        this.settingStore.getSite().subscribe(res => {
+    this.settingStore.getSite().subscribe(res => {
       if (res) {
         this.sitename = res.name || 'AK-BOSS';
         this.copyright = res.copyright || '';
-      } });
+      }
+    });
   }
 
 }
