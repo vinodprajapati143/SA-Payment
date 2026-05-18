@@ -14,9 +14,5 @@ export const appRoutes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-  },
-  {
-    path: 'payment',
-    loadChildren: () => import('./payment/payment.module').then(m => m.PaymentModule)
   }
 ];
