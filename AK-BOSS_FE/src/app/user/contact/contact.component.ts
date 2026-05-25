@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { ApiService } from '../../core/services/api.service';
 import { SettingService } from '../../core/services/setting.service';
 import { BlogFooterComponent } from '../../shared/blog-footer/blog-footer.component';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({

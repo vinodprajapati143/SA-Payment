@@ -1,10 +1,10 @@
-<div
+            <div
   class="flex justify-between bg-white border-b border-gray-100 items-center fixed top-0 w-full h-16 z-50 px-4 md:px-8 shadow-sm">
   <!-- Left Side Logo -->
   <div class="flex items-center">
     <span (click)="goToHome()" class="cursor-pointer flex items-center gap-2">
       <img *ngIf="siteLogo" [src]="siteLogo" alt="logo" class="h-8 max-w-[150px] object-contain">
-      <span *ngIf="!siteLogo" class="text-xl font-extrabold text-[#0e263e] tracking-tight">QUINTUSPAY</span>
+      <span *ngIf="!siteLogo" class="text-xl font-extrabold text-[#0e263e] tracking-tight">Sapayment Pay</span>
     </span>
   </div>
 
@@ -24,7 +24,7 @@
 
   <!-- Right Side Action Button -->
   <div class="flex items-center">
-    <button (click)="login()"
+    <button routerLink="/user/home"
       class="bg-[#0e263e] text-white hover:bg-[#06182a] font-bold px-5 py-2.5 rounded-full text-xs transition-all flex items-center justify-center gap-1.5 shadow-md">
       Get Started
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"

@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BlogHeaderComponent } from "../../shared/blog-header/blog-header.component";
 import { BlogFooterComponent } from "../../shared/blog-footer/blog-footer.component";
 import { AboutUsComponent } from "../about-us/about-us.component";
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
